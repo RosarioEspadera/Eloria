@@ -24,7 +24,3 @@ export function renderDishes(dishes) {
     button.addEventListener("click", () => addToCart(dishes[i]));
   });
 }
-.catch(err => {
-    console.error("Error loading dishes:", err);
-    document.getElementById("dishList").innerHTML = "<p>Failed to load dishes.</p>";
-  });
