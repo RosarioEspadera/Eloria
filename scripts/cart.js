@@ -1,13 +1,42 @@
 let cart = [];
 
-function addToCart(dish) {
+export function addToCart(dish) {
   cart.push(dish);
   renderCart();
 }
 
 function renderCart() {
   const cartPreview = document.getElementById("cartPreview");
-  cartPreview.innerHTML = cart.map(item => `
-    <div>${item.name} – ₱${item.price}</div>
+  if (!cartPreview) return;
+
+  if (cart.length === 0) {
+    cartPreview.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  const itemsHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <span>${item.name} – ₱${item.price}</span>
+      <button onclick="removeFromCart(${index})">✖</button>
+    </div>
   `).join("");
+
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  cartPreview.innerHTML = `
+    <h2>Cart Preview</h2>
+    ${itemsHTML}
+    <div class="cart-total">Total: ₱${total}</div>
+  `;
+}
+
+// Optional: allow item removal
+window.removeFromCart = function(index) {
+  cart.splice(index, 1);
+  renderCart();
+};
+
+// Optional: expose cart for email.js or orderForm
+export function getCart() {
+  return cart;
 }
