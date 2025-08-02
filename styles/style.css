@@ -14,14 +14,6 @@ h1, h2 {
   text-align: center;
 }
 
-/* Tag Filters */
-#tag-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
 .toast {
   position: fixed;
   bottom: 20px;
@@ -42,19 +34,33 @@ h1, h2 {
   transform: translateX(-50%) scale(1.05);
 }
 
-#tag-filters button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background-color: #e0d6cf;
-  cursor: pointer;
-  font-size: 0.9rem;
+#tagFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-#tag-filters button.active {
-  background-color: #5f4638;
+.tag-button {
+  background: #e0d6cf;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tag-button:hover {
+  background: #5f4638;
   color: white;
 }
+
+.tag-button.clear {
+  background: #ccc;
+  color: #333;
+}
+
 
 /* Dish Gallery */
 #dishList {
@@ -274,16 +280,16 @@ body[data-theme="dark"] h2 {
   color: #f5f0ec;
 }
 
-/* Tag Filters */
-body[data-theme="dark"] .tag-filters button {
-  background-color: #3a2e2a;
-  color: #e0d6cf;
+body[data-theme="dark"] .tag-button {
+  background: #3a2e2a;
+  color: #f5f0ec;
 }
 
-body[data-theme="dark"] .tag-filters button.active {
-  background-color: #e0d6cf;
-  color: #3a2e2a;
+body[data-theme="dark"] .tag-button.clear {
+  background: #555;
+  color: #eee;
 }
+
 
 /* Dish Cards */
 body[data-theme="dark"] .dish-card {
