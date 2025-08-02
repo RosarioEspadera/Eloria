@@ -1,12 +1,15 @@
+import { getCart } from "./cart.js";
+
 document.getElementById("orderForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
+  const cart = getCart();
 
   const data = {
     to_name: form.name.value,
     reply_to: form.email.value,
     address: form.address.value,
-    item_list: generateItemListText(),
+    item_list: generateItemListText(cart),
     total: formatTotal(cart.reduce((sum, item) => sum + item.price * item.quantity, 0)),
   };
 
@@ -20,7 +23,7 @@ document.getElementById("orderForm").addEventListener("submit", async (e) => {
   }
 });
 
-function generateItemListText() {
+function generateItemListText(cart) {
   return cart.map(item =>
     `${item.quantity} × ${item.name} — ₱${(item.price * item.quantity).toFixed(2)}`
   ).join("\n");
