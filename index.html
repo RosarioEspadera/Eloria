@@ -9,7 +9,14 @@
 <body>
   <header>
     <h1>Eloria</h1>
-    <button id="themeToggle">🌙</button>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    body.dataset.theme = body.dataset.theme === "dark" ? "light" : "dark";
+  }
+</script>
   </header>
 
   <section id="tagFilters"></section>
