@@ -1,5 +1,7 @@
 import { getCart } from "./cart.js";
 
+emailjs.init("AqvkFhQnxowOJda9J");  
+
 document.getElementById("orderForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
