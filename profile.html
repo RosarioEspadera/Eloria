@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eloria | Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="supabase.js"></script>
+</head>
+<body>
+  <h1>Your Profile</h1>
+  <img id="profile-photo" src="default.png" alt="Profile Photo" />
+  <input type="file" id="photo-upload" />
+  <button onclick="uploadPhoto()">Change Photo</button>
+
+  <div id="user-info">
+    <p>Name: <span id="name"></span></p>
+    <p>Age: <span id="age"></span></p>
+    <p>Address: <span id="address"></span></p>
+  </div>
+
+  <script>
+    async function uploadPhoto() {
+      // Placeholder for Cloudinary or Supabase Storage upload logic
+      alert("Photo upload logic goes here.");
+    }
+
+    // Fetch user info logic goes here
+  </script>
+</body>
+</html>
