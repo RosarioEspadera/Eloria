@@ -72,14 +72,16 @@ h1, h2 {
 
 /* 🍲 Dish Card */
 .dish-card {
-  background: #fffdf7;
+  background: var(--card-bg, #fff);
+  color: var(--card-text, #222);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 360px;
   height: auto;
-  padding: 1.5rem;
 }
 .dish-card.hidden {
   opacity: 0;
@@ -87,8 +89,8 @@ h1, h2 {
   pointer-events: none;
 }
 .dish-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 .dish-card img {
   width: 100%;
@@ -118,10 +120,13 @@ h1, h2 {
 }
 
 .tag {
-  background-color: #f0eae6;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
+  display: inline-block;
+  background: #e0d6cf;
+  color: #3a2e2a;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin: 2px;
 }
 
 /* Buttons */
@@ -155,8 +160,11 @@ h1, h2 {
 
 .cart-total {
   text-align: right;
+  font-size: 1.1rem;
   font-weight: bold;
+  font-size: 1.1rem;
   margin-top: 12px;
+  color: #5f4638;
 }
 
 form {
@@ -176,12 +184,16 @@ form {
   margin-top: 40px;
 }
 
-#order-form {
+#orderForm {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 400px;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 400px;
-  margin: 0 auto;
 }
 form button{
   padding: 12px;
@@ -192,26 +204,23 @@ form button{
   font-size: 1rem;
   cursor: pointer;
 }
-#order-form input,
-#order-form textarea {
+#orderForm input,
+#orderForm textarea {
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
 }
-
-#order-form button {
-  padding: 12px;
-  background-color: #5f4638;
+#orderForm button {
+  background: #5f4638;
   color: white;
   border: none;
+  padding: 10px;
   border-radius: 8px;
-  font-size: 1rem;
   cursor: pointer;
 }
-
-#order-form button:hover {
-  background-color: #7a5a45;
+#orderForm button:hover {
+  background: #7a5a45;
 }
 /* Toggle Theme Button */
 .theme-toggle {
@@ -279,7 +288,10 @@ body[data-theme="dark"] h1,
 body[data-theme="dark"] h2 {
   color: #f5f0ec;
 }
-
+body[data-theme="dark"] .tag {
+  background: #3a2e2a;
+  color: #f5f0ec;
+}
 body[data-theme="dark"] .tag-button {
   background: #3a2e2a;
   color: #f5f0ec;
@@ -293,7 +305,7 @@ body[data-theme="dark"] .tag-button.clear {
 
 /* Dish Cards */
 body[data-theme="dark"] .dish-card {
-  background-color: #2c2622;
+  
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
@@ -323,9 +335,13 @@ body[data-theme="dark"] #order-form button:hover {
 }
 
 /* Cart Preview */
-body[data-theme="dark"] #cart-preview {
-  background-color: #2c2622;
+body[data-theme="dark"] #cartPreview {
+  background: #1e1e1e;
   color: #f5f0ec;
+}
+
+body[data-theme="dark"] .cart-total {
+  color: #e0d6cf;
 }
 
 /* Form Inputs */
