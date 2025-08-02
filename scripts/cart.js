@@ -1,13 +1,29 @@
 let cart = [];
 
 export function addToCart(dish) {
-  if (typeof dish.price !== "number" || typeof dish.quantity !== "number") {
-    console.warn("Invalid dish format:", dish);
+  if (
+    !dish ||
+    typeof dish.id !== "string" ||
+    typeof dish.name !== "string" ||
+    typeof dish.price !== "number" ||
+    typeof dish.description !== "string" ||
+    !Array.isArray(dish.tags)
+  ) {
+    console.error("Invalid dish format:", dish);
     return;
   }
-  cart.push(dish);
+
+  // Add quantity if missing
+  const existing = cart.find(item => item.id === dish.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...dish, quantity: 1 });
+  }
+
   renderCart();
 }
+
 
 function renderCart() {
   const cartPreview = document.getElementById("cartPreview");
