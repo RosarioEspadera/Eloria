@@ -15,7 +15,7 @@ h1, h2 {
 }
 
 /* Tag Filters */
-.tag-filters {
+#tag-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -42,7 +42,7 @@ h1, h2 {
   transform: translateX(-50%) scale(1.05);
 }
 
-.tag-filters button {
+#tag-filters button {
   padding: 8px 12px;
   border: none;
   border-radius: 8px;
@@ -51,60 +51,58 @@ h1, h2 {
   font-size: 0.9rem;
 }
 
-.tag-filters button.active {
+#tag-filters button.active {
   background-color: #5f4638;
   color: white;
 }
 
 /* Dish Gallery */
-.dish-gallery {
+#dishList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
+/* 🍲 Dish Card */
 .dish-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #fffdf7;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 50px;
-}
-
-.dish-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.dish-card img {
-  width: 50%;
+  min-height: 360px;
   height: auto;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
+  padding: 1.5rem;
+}
+.dish-card.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+.dish-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.dish-card img {
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  margin-top:40px
 }
-
-
-.dish-card:hover img {
-  transform: scale(1.03);
-}
-
 .dish-info {
-  padding: 16px;
+  padding: 1rem;
+}
+.dish-info h2 {
+  font-size: 1.2rem;
+  color: #5f4638;
+  margin-bottom: 0.5rem;
+}
+.description {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+  margin-bottom: 0.5rem;
 }
 
-.description {
-  font-size: 0.95rem;
-  margin-bottom: 12px;
-  color: #5f4638;
-}
 
 .tags {
   display: flex;
