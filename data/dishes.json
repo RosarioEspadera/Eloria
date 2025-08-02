@@ -5,7 +5,7 @@
     "description": "A warm hug in a bowl. Shared by Elio.",
     "price": 110,
     "tags": ["🌙 Midnight Pick", "🥗 Vegan"],
-    "image": "../assets/images/miso.jpg"
+    "image": "./assets/images/miso.jpg"
   },
   {
     "id": "adobo",
@@ -13,7 +13,7 @@
     "description": "Soy, vinegar, and a legacy of comfort simmered in one pan.",
     "price": 100,
     "tags": ["🇵🇭 Filipino Staple", "🥩 Meaty", "🎉 Crowd Favorite"],
-    "image": "../assets/images/Adobo.png"
+    "image": "./assets/images/Adobo.png"
   },
   {
     "id": "barbecue",
@@ -21,7 +21,7 @@
     "description": "Smoky glaze and skewered stories over glowing coals.",
     "price": 120,
     "tags": ["🔥 Grilled", "🥩 Meaty", "🎉 Crowd Favorite"],
-    "image": "../assets/images/Barbecue.png"
+    "image": "./assets/images/Barbecue.png"
   },
   {
     "id": "beer",
@@ -29,7 +29,7 @@
     "description": "Golden refreshment, bottled laughter, and chill endings.",
     "price": 60,
     "tags": ["🥤 Beverages", "🎉 Crowd Favorite"],
-    "image": "../assets/images/Beer.png"
+    "image": "./assets/images/Beer.png"
   },
   {
     "id": "macchiato",
@@ -37,7 +37,7 @@
     "description": "A bold dot of espresso in creamy silence—wakefulness with restraint.",
     "price": 80,
     "tags": ["☕ Coffee", "🎉 Crowd Favorite"],
-    "image": "../assets/images/CaffeMacchiatio.png"
+    "image": "./assets/images/CaffeMacchiatio.png"
   },
   {
     "id": "mocha",
@@ -45,7 +45,7 @@
     "description": "Rich chocolate meets espresso—a hug and a buzz.",
     "price": 90,
     "tags": ["🧋 Sweet", "☕ Coffee"],
-    "image": "../assets/images/CaffeMocha.png"
+    "image": "./assets/images/CaffeMocha.png"
   },
   {
     "id": "cappuccino",
@@ -53,7 +53,7 @@
     "description": "Milk foam and espresso banter—morning’s favorite duet.",
     "price": 90,
     "tags": ["☕ Coffee"],
-    "image": "../assets/images/Cappuccino.png"
+    "image": "./assets/images/Cappuccino.png"
   },
   {
     "id": "espresso",
@@ -61,7 +61,7 @@
     "description": "Sharp, small, and life-altering in 40 milliliters.",
     "price": 75,
     "tags": ["☕ Coffee"],
-    "image": "../assets/images/Espresso.png"
+    "image": "./assets/images/Espresso.png"
   },
   {
     "id": "icedtea",
@@ -69,7 +69,7 @@
     "description": "A citrus whisper wrapped in ice—refreshment, reimagined.",
     "price": 65,
     "tags": ["🍃Fresh", "🥤 Beverages"],
-    "image": "../assets/images/IcedTea.png"
+    "image": "./assets/images/IcedTea.png"
   },
   {
     "id": "latte",
@@ -77,7 +77,7 @@
     "description": "Gentle warmth and milky poetry for quiet mornings.",
     "price": 85,
     "tags": ["☕ Coffee", "🌙 Midnight Pick"],
-    "image": "../assets/images/Latte.png"
+    "image": "./assets/images/Latte.png"
   },
   {
     "id": "lemonade",
@@ -85,7 +85,7 @@
     "description": "Sunlight in a glass—tart, sweet, and undeniably fresh.",
     "price": 65,
     "tags": ["🍃Fresh", "🥤 Beverages"],
-    "image": "../assets/images/Lemonade.png"
+    "image": "./assets/images/Lemonade.png"
   },
   {
     "id": "milkshake",
@@ -93,7 +93,7 @@
     "description": "Swirls of creamy sweetness and joyful slurps.",
     "price": 75,
     "tags": ["🧋 Sweet", "🌿 Comfort"],
-    "image": "../assets/images/MilkShake.png"
+    "image": "./assets/images/MilkShake.png"
   },
   {
     "id": "pasta",
@@ -101,7 +101,7 @@
     "description": "Twists of tradition with garlic confessions in every bite.",
     "price": 120,
     "tags": ["🌿 Comfort"],
-    "image": "../assets/images/Pasta.png"
+    "image": "./assets/images/Pasta.png"
   },
   {
     "id": "salad",
@@ -109,7 +109,7 @@
     "description": "Crisp textures and zesty tang, a breath of green.",
     "price": 85,
     "tags": ["🥗 Vegan", "🍃Fresh"],
-    "image": "../assets/images/Salad.png"
+    "image": "./assets/images/Salad.png"
   },
   {
     "id": "steak",
@@ -117,7 +117,7 @@
     "description": "Bold flavor, seared to perfection for moonlit cravings.",
     "price": 130,
     "tags": ["🥩 Meaty", "🌙 Midnight Pick", "🔥 Grilled"],
-    "image": "../assets/images/Steak.png"
+    "image": "./assets/images/Steak.png"
   },
   {
     "id": "wine",
@@ -125,6 +125,6 @@
     "description": "Deep berries and quiet declarations poured slowly.",
     "price": 140,
     "tags": ["🥤 Beverages", "🌙 Midnight Pick"],
-    "image": "../assets/images/Wine.png"
+    "image": "./assets/images/Wine.png"
   }
 ]
