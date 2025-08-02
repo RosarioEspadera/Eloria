@@ -1,4 +1,4 @@
-import { dishes } from "../data/dishes.js"; // or fetch if needed
+import { dishes } from "./data/dishes.js"; // or fetch if needed
 import { renderDishes } from "./renderDishes.js";
 
 const tagFilters = document.getElementById("tagFilters");
