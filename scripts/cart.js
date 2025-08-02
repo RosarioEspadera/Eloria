@@ -19,9 +19,18 @@ export function addToCart(dish) {
     existing.quantity += 1;
   } else {
     cart.push({ ...dish, quantity: 1 });
+    showToast(`🛒 ${dish.name} added to cart.`);
   }
 
   renderCart();
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
 
@@ -42,14 +51,18 @@ function renderCart() {
 `).join("");
 
 const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+const totalFormatted = formatTotal(total);
 
-
-  cartPreview.innerHTML = `
-    <h2>Cart Preview</h2>
-    ${itemsHTML}
-    <div class="cart-total">Total: ₱${total}</div>
-  `;
+cartPreview.innerHTML = `
+  <h2>Cart Preview</h2>
+  ${itemsHTML}
+  <div class="cart-total">Total: ${totalFormatted}</div>
+`;
+  
+function formatTotal(amount) {
+  return `₱${amount.toFixed(2)}`;
 }
+
 
 // Optional: allow item removal
 window.removeFromCart = function(index) {
