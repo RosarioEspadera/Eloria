@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sign Up | Eloria</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/signUp.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="supabase.js"></script>
+  <script type="module" src="scripts/supabase.js"></script>
+  <script type="module" src="scripts/signUp.js"></script>
 </head>
 <body>
-  <h1>Create Account</h1>
+  <h1>Create Your Eloria Account</h1>
   <form id="signup-form">
+    <div class="error" id="errorMsg"></div>
     <input type="text" placeholder="Name" id="name" required />
     <input type="number" placeholder="Age" id="age" required />
     <input type="text" placeholder="Address" id="address" required />
@@ -17,23 +20,5 @@
     <input type="password" placeholder="Password" id="password" required />
     <button type="submit">Sign Up</button>
   </form>
-
-  <script>
-    document.getElementById('signup-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const { data, error } = await supabase.auth.signUp({
-        email: email.value,
-        password: password.value
-      }, {
-        data: {
-          name: name.value,
-          age: parseInt(age.value),
-          address: address.value
-        }
-      });
-      if (error) alert(error.message);
-      else window.location.href = 'login.html';
-    });
-  </script>
 </body>
 </html>
