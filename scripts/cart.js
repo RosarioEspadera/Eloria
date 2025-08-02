@@ -58,7 +58,8 @@ cartPreview.innerHTML = `
   ${itemsHTML}
   <div class="cart-total">Total: ${totalFormatted}</div>
 `;
-  
+}
+
 function formatTotal(amount) {
   return `₱${amount.toFixed(2)}`;
 }
