@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eloria | Chat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="supabase.js"></script>
+</head>
+<body>
+  <h1>Group Chat</h1>
+  <div id="chat-box"></div>
+  <input type="text" id="message" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    async function sendMessage() {
+      const content = document.getElementById('message').value;
+      await supabase.from('messages').insert([{ content }]);
+      document.getElementById('message').value = '';
+    }
+
+    supabase
+      .channel('public:messages')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
+        const div = document.createElement('div');
+        div.textContent = payload.new.content;
+        document.getElementById('chat-box').appendChild(div);
+      })
+      .subscribe();
+  </script>
+</body>
+</html>
