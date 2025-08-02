@@ -1,4 +1,4 @@
-fetch("../data/dishes.json")
+fetch("./data/dishes.json")
   .then(res => res.json())
   .then(dishes => {
     const dishList = document.getElementById("dishList");
