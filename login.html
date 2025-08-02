@@ -3,28 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <title>Login | Eloria</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="supabase.js"></script>
+  <script type="module" src="scripts/supabase.js"></script>
+  <script type="module" src="scripts/login.js"></script>
 </head>
 <body>
-  <h1>Login</h1>
+  <h1>Welcome Back to Eloria</h1>
   <form id="login-form">
+    <div class="error" id="errorMsg"></div>
     <input type="email" placeholder="Email" id="email" required />
     <input type="password" placeholder="Password" id="password" required />
     <button type="submit">Login</button>
+      <p>
+        Don’t have an account?
+        <a href="signUp.html" id="createAccountLink" class="signUpBtn">Create Account</a>
+      </p>
   </form>
-
-  <script>
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email.value,
-        password: password.value
-      });
-      if (error) alert(error.message);
-      else window.location.href = 'index.html';
-    });
-  </script>
 </body>
 </html>
