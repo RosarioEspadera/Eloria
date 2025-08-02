@@ -1,9 +1,8 @@
-import { dishes } from "./data/dishes.js"; // or fetch if needed
 import { renderDishes } from "./renderDishes.js";
 
 const tagFilters = document.getElementById("tagFilters");
 
-const allTags = [...new Set(dishes.flatMap(dish => dish.tags))].sort();
+let allTags = [];
 
 function createTagButton(tag) {
   const button = document.createElement("button");
@@ -13,8 +12,10 @@ function createTagButton(tag) {
   return button;
 }
 
-function renderTagFilters() {
+function renderTagFilters(dishes) {
   tagFilters.innerHTML = "";
+
+  allTags = [...new Set(dishes.flatMap(dish => dish.tags))].sort();
 
   allTags.forEach(tag => {
     tagFilters.appendChild(createTagButton(tag));
@@ -26,6 +27,22 @@ function renderTagFilters() {
   clearBtn.onclick = () => renderDishes(dishes);
   tagFilters.appendChild(clearBtn);
 }
+
+function filterByTag(tag) {
+  fetch("./data/dishes.json")
+    .then(res => res.json())
+    .then(dishes => {
+      const filtered = dishes.filter(dish => dish.tags.includes(tag));
+      renderDishes(filtered);
+    });
+}
+
+fetch("./data/dishes.json")
+  .then(res => res.json())
+  .then(dishes => {
+    renderTagFilters(dishes);
+    renderDishes(dishes);
+  });
 
 function filterByTag(tag) {
   const filtered = dishes.filter(dish => dish.tags.includes(tag));
