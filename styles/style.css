@@ -34,12 +34,12 @@ h1, h2 {
   font-size: 0.9rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 9999;
 }
-
 .toast.show {
   opacity: 1;
+  transform: translateX(-50%) scale(1.05);
 }
 
 .tag-filters button {
@@ -345,4 +345,11 @@ body[data-theme="dark"] .bottom-tab {
 
 body[data-theme="dark"] .tab-link {
   color: #e0d6cf;
+}
+
+/* Dark mode variant */
+body[data-theme="dark"] .toast {
+  background: #f5f0ec;
+  color: #3a2e2a;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
