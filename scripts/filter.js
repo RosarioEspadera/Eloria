@@ -44,9 +44,4 @@ fetch("./data/dishes.json")
     renderDishes(dishes);
   });
 
-function filterByTag(tag) {
-  const filtered = dishes.filter(dish => dish.tags.includes(tag));
-  renderDishes(filtered);
-}
 
-renderTagFilters();
