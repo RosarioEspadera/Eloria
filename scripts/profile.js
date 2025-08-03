@@ -5,14 +5,15 @@ const supabase = window.supabase.createClient(
 
 // Load profile info
 (async () => {
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
+ const { data: { user } } = await supabase.auth.getUser();
+console.log(user?.id); // should match your Supabase row
   if (userError || !user) return console.error('User not found');
 
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('avatar_url, name, age, address')
-    .eq('id', user.id)
-    .single();
+const { data, error } = await supabase
+  .from('profiles')
+  .select('avatar_url, name, age, address')
+  .eq('id', user.id)
+  .maybeSingle(); // returns null if no match, avoids 406
 
   if (error) return console.error('Profile fetch error:', error);
 
