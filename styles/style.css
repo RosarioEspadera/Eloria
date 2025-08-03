@@ -28,6 +28,7 @@ h1, h2 {
   overflow-y: auto;
   padding-right: 1rem;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 .hero {
@@ -53,6 +54,7 @@ h1, h2 {
   width: 20vw;
   height: 100vh;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
   display: flex;
   flex-direction: column;
   gap: 2rem;
