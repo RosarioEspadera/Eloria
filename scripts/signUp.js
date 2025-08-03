@@ -32,7 +32,7 @@ if (userId) {
     return;
   }
 
-  window.location.href = "login.html";
+  window.location.href = 'login.html';
+  return;
 }
-
 });
