@@ -111,6 +111,7 @@ body {
 .toast.info { background: #3498db; }
 
 .profile-fields {
+  align-items: center;
   margin-top: 1rem;
   padding: 1.5rem;
   border-radius: 12px;
@@ -128,7 +129,7 @@ body {
 }
 
 .profile-fields input {
-  width: 100%;
+  width: 90%;
   padding: 0.6rem 0.8rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
