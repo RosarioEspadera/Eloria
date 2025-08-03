@@ -1,0 +1,89 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fdf8f4;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom, #fdf6f0, #f7f2ee);
+  border-bottom: 1px solid #e0d6cf;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #5c3d2e;
+  margin: 0;
+}
+
+.profile-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.photo-container {
+  margin-bottom: 1.5rem;
+}
+
+#profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#photo-upload {
+  margin-top: 1rem;
+}
+
+#change-photo {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #a86c4b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#user-info p {
+  font-size: 1rem;
+  color: #3a2a1e;
+  margin: 0.5rem 0;
+}
+
+#logout-button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #c45f4a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#logout-button:hover {
+  background-color: #a84c3a;
+}
+
+.bottom-tab {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #f7f2ee;
+  border-top: 1px solid #e0d6cf;
+}
+
+.tab-link {
+  text-decoration: none;
+  color: #5c3d2e;
+  font-weight: 500;
+}
