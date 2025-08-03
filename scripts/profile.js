@@ -22,11 +22,17 @@ async function loadProfile() {
     return;
   }
 
-  if (!profile) {
-    console.warn('No profile found for this user.');
-    return;
-  }
-
+ if (!profile) {
+  console.warn('No profile found for this user.');
+  await supabase.from('profiles').insert({
+    id: user.id,
+    name: '',
+    age: null,
+    address: '',
+    avatar_url: ''
+  });
+  return;
+}
   // Populate UI
   document.getElementById('name').value = profile.name || '';
   document.getElementById('age').value = profile.age || '';
@@ -45,11 +51,12 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
   const { data: { user } } = await supabase.auth.getUser();
   const fileName = `user-${user.id}-${Date.now()}-${file.name}`;
 
+  try {
   const { error: uploadError } = await supabase.storage
     .from('profile-photos')
     .upload(fileName, file, { upsert: true });
 
-  if (uploadError) return console.error('Upload failed:', uploadError.message);
+  if (uploadError) throw uploadError;
 
   const { data: publicData } = supabase.storage
     .from('profile-photos')
@@ -57,12 +64,17 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
 
   const publicUrl = publicData.publicUrl;
 
-  await supabase
+  const { error: updateError } = await supabase
     .from('profiles')
     .update({ avatar_url: publicUrl })
     .eq('id', user.id);
 
+  if (updateError) throw updateError;
+
   document.getElementById('profile-photo').src = publicUrl;
+} catch (err) {
+  console.error('Upload failed:', err.message);
+}
 });
 
 // Logout
