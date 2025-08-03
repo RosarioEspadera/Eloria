@@ -23,7 +23,7 @@ body{
 }
 
 .dish-card {
-  background: #7C6619;
+  background: linear-gradient(to top, #B8B5AD, #7C6619); /* soft gradient blend */
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.08);
   padding: 1.5rem;
