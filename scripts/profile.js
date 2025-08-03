@@ -168,3 +168,15 @@ document.getElementById('save-profile')?.addEventListener('click', async () => {
     showToast('Update failed', 'error');
   }
 });
+
+document.getElementById('edit-profile-toggle')?.addEventListener('click', () => {
+  const form = document.querySelector('.profile-fields');
+  const display = document.getElementById('user-info');
+  const toggleBtn = document.getElementById('edit-profile-toggle');
+
+  const isEditing = form.style.display === 'block';
+
+  form.style.display = isEditing ? 'none' : 'block';
+  display.style.display = isEditing ? 'block' : 'none';
+  toggleBtn.textContent = isEditing ? 'Edit Profile Info' : 'Cancel';
+});
