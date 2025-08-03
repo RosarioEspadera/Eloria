@@ -39,6 +39,7 @@ h1, h2 {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
+  align:
 }
 
 .tag-button {
@@ -82,6 +83,7 @@ h1, h2 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 360px;
   height: auto;
+  text-align: center;
 }
 .dish-card.hidden {
   opacity: 0;
