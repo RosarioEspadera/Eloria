@@ -1,6 +1,7 @@
 const SUPABASE_URL = 'https://iabclikcfddqjcswhqwo.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw'; 
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw'; // truncated for brevity
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 // 🧠 Load profile info
 async function loadProfile() {
   const { data: { user }, error: authError } = await supabase.auth.getUser();
@@ -21,6 +22,7 @@ async function loadProfile() {
       name: '',
       age: null,
       address: '',
+      email: user.email,
       avatar_url: ''
     });
     if (insertError) return console.error('Insert failed:', insertError.message);
@@ -53,7 +55,8 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
       .from('profile-photos')
       .upload(fileName, file, {
         upsert: true,
-        contentType: file.type
+        contentType: file.type,
+        cacheControl: '3600'
       });
 
     if (uploadError) throw uploadError;
@@ -80,9 +83,12 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
   }
 });
 
-
 // 🚪 Logout
-document.getElementById('logout-button')?.addEventListener('click', () => {
+document.getElementById('logout-button')?.addEventListener('click', async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.error('Logout failed:', error.message);
+    return;
+  }
   window.location.href = 'login.html';
 });
-
