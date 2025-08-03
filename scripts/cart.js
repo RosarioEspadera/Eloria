@@ -85,10 +85,6 @@ window.updateQuantity = function(id, newQty) {
     renderCart();
   }
 };
-showToast(`Updated ${item.name} to ${item.quantity}`);
-qtyText.classList.add('qty-flash');
-setTimeout(() => qtyText.classList.remove('qty-flash'), 300);
-
 
 // Optional: allow item removal
 window.removeFromCart = function(index) {
