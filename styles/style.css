@@ -10,6 +10,30 @@ body {
   min-height: 100vh;
   color: #3a2a1e;
 }
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+    background: linear-gradient(to bottom, #a97253, #341b0d);
+  border-bottom: 1px solid #e0d6cf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  animation: fadeIn 0.6s ease-out;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin: 0;
+}
+h1{
+  color:#ead5c0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 /* Header */
 h1, h2 {
   font-weight: 600;
