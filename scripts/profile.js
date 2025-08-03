@@ -83,9 +83,27 @@ async function uploadAvatar() {
 
     const publicUrl = publicData.publicUrl;
 
+    // 🔍 Fetch existing profile to preserve required fields
+    const { data: existing, error: fetchError } = await supabase
+      .from('profiles')
+      .select('name, age, address, email')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (fetchError || !existing) throw new Error('Profile fetch failed before update');
+
+    const updatedProfile = {
+      id: user.id,
+      name: existing.name || '',
+      age: existing.age ?? null,
+      address: existing.address || '',
+      email: existing.email || user.email,
+      avatar_url: publicUrl
+    };
+
     const { error: updateError } = await supabase
       .from('profiles')
-      .upsert({ id: user.id, avatar_url: publicUrl }, { onConflict: 'id' });
+      .upsert(updatedProfile, { onConflict: 'id' });
 
     if (updateError) throw updateError;
 
@@ -96,6 +114,7 @@ async function uploadAvatar() {
     showToast(`Upload failed: ${err.message}`, 'error');
   }
 }
+
 
 // 🚪 Logout
 async function logout() {
