@@ -4,7 +4,7 @@
     "name": "Midnight Miso Musings",
     "description": "A warm hug in a bowl. Shared by Elio.",
     "price": 110,
-    "tags": ["🌙 Midnight Pick", "🥗 Vegan"],
+    "tags": ["🥗 Vegan"],
     "image": "./assets/images/miso.jpg"
   },
   {
@@ -44,7 +44,7 @@
     "name": "Caffe Mocha",
     "description": "Rich chocolate meets espresso—a hug and a buzz.",
     "price": 90,
-    "tags": ["🧋 Sweet", "☕ Coffee"],
+    "tags": ["☕ Coffee"],
     "image": "./assets/images/CaffeMocha.png"
   },
   {
@@ -68,7 +68,7 @@
     "name": "Iced Tea",
     "description": "A citrus whisper wrapped in ice—refreshment, reimagined.",
     "price": 65,
-    "tags": ["🍃Fresh", "🥤 Beverages"],
+    "tags": ["🥤 Beverages"],
     "image": "./assets/images/IcedTea.png"
   },
   {
@@ -76,7 +76,7 @@
     "name": "Warm Latte",
     "description": "Gentle warmth and milky poetry for quiet mornings.",
     "price": 85,
-    "tags": ["☕ Coffee", "🌙 Midnight Pick"],
+    "tags": ["☕ Coffee"],
     "image": "./assets/images/Latte.png"
   },
   {
@@ -84,7 +84,7 @@
     "name": "Lemonade",
     "description": "Sunlight in a glass—tart, sweet, and undeniably fresh.",
     "price": 65,
-    "tags": ["🍃Fresh", "🥤 Beverages"],
+    "tags": ["🥤 Beverages"],
     "image": "./assets/images/Lemonade.png"
   },
   {
@@ -92,7 +92,7 @@
     "name": "Milkshake Delight",
     "description": "Swirls of creamy sweetness and joyful slurps.",
     "price": 75,
-    "tags": ["🧋 Sweet", "🌿 Comfort"],
+    "tags": ["🥤 Beverages"],
     "image": "./assets/images/MilkShake.png"
   },
   {
@@ -108,7 +108,7 @@
     "name": "Garden Salad",
     "description": "Crisp textures and zesty tang, a breath of green.",
     "price": 85,
-    "tags": ["🥗 Vegan", "🍃Fresh"],
+    "tags": ["🥗 Vegan"],
     "image": "./assets/images/Salad.png"
   },
   {
@@ -116,7 +116,7 @@
     "name": "Fire-Grilled Steak",
     "description": "Bold flavor, seared to perfection for moonlit cravings.",
     "price": 130,
-    "tags": ["🥩 Meaty", "🌙 Midnight Pick", "🔥 Grilled"],
+    "tags": ["🥩 Meaty", "🔥 Grilled"],
     "image": "./assets/images/Steak.png"
   },
   {
@@ -124,7 +124,7 @@
     "name": "Red Wine Sipper",
     "description": "Deep berries and quiet declarations poured slowly.",
     "price": 140,
-    "tags": ["🥤 Beverages", "🌙 Midnight Pick"],
+    "tags": ["🥤 Beverages"],
     "image": "./assets/images/Wine.png"
   }
 ]
