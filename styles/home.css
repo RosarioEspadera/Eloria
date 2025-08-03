@@ -52,10 +52,27 @@
 }
 
 .hero {
-  background: linear-gradient(to bottom, #fdf8f3, #fff);
-  padding: 4rem 2rem;
+  background-image: url('assets/images/hero.png'); /* Adjust path if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 6rem 2rem;
+  color: white;
   text-align: center;
-  animation: fadeInUp 0.8s ease-out both;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* dark overlay */
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h2 {
