@@ -20,12 +20,14 @@ h1, h2 {
   display: flex;
   flex-direction: row;
   gap: 2rem;
-  padding: 2rem;
-  align-items: flex-start;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent double scrollbars */
 }
 #mainContent {
   flex: 1;
-  width: 66.66vw;
+  overflow-y: auto;
+  padding-right: 1rem;
+  scroll-behavior: smooth;
 }
 
 .hero {
@@ -48,13 +50,20 @@ h1, h2 {
   position: sticky;
   top: 80px;
   align-self: flex-start;
-  width: 33.33vw;
+  width: 20vw;
   height: 100vh;
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 100px;
   z-index: 100;
+   /* ✨ Case Styling */
+  background: linear-gradient(to bottom right, #fdf8f4, #f0e6d8);
+  border: 2px solid #e0d6cf;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
 }
 .toast {
   position: fixed;
@@ -458,4 +467,10 @@ body[data-theme="dark"] .toast {
   background: #f5f0ec;
   color: #3a2e2a;
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
+
+body[data-theme="dark"] .sidebar {
+  background: linear-gradient(to bottom right, #2c2622, #1e1b18);
+  border: 2px solid #3a2e2a;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
 }
