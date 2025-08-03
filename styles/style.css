@@ -24,11 +24,15 @@ h1, h2 {
   overflow: hidden; /* Prevent double scrollbars */
 }
 #mainContent {
+  margin-left: 80px;
+  min-height: 100vh;
   flex: 1;
   overflow-y: auto;
-  padding-right: 1rem;
+  padding: 1rem;
   scroll-behavior: smooth;
   scrollbar-width: thin;
+  width: 80vw;
+  transition: margin-left 0.3s ease;
 }
 
 .hero {
@@ -54,7 +58,6 @@ h1, h2 {
   width: 20vw;
   height: 100vh;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -66,6 +69,7 @@ h1, h2 {
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
+  scrollbar-width: thin;
 }
 .toast {
   position: fixed;
@@ -202,6 +206,8 @@ h1, h2 {
 
 /* Cart Preview */
 #cart-preview {
+  display: flex;
+  flex-direction: row;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -359,23 +365,31 @@ footer {
 
 /* Bottom Navigation */
 .bottom-tab {
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
+  height: 100vh;
+  width: 80px;
   background: #fff;
-  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  padding: 8px 0;
+  align-items: center;
+  padding: 1rem 0;
+  z-index: 1000;
 }
 
+
 .tab-link {
-  text-align: center;
-  font-size: 0.8rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
   color: #5f4638;
   text-decoration: none;
+  margin: 0.5rem 0;
 }
+
 /* Dark Mode Toggle */
 body[data-theme="dark"] {
   background-color: #1e1b18;
@@ -470,9 +484,12 @@ body[data-theme="dark"] .toast {
   color: #3a2e2a;
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
+@media (max-width: 768px) {
+  .bottom-tab {
+    width: 60px;
+  }
 
-body[data-theme="dark"] .sidebar {
-  background: linear-gradient(to bottom right, #2c2622, #1e1b18);
-  border: 2px solid #3a2e2a;
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+  .mainContent {
+    margin-left: 60px;
+  }
 }
