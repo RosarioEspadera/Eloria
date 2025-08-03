@@ -47,6 +47,7 @@ h1, h2 {
   height: 100vh; /* Full viewport height */
   overflow: hidden; /* Prevent double scrollbars */
 }
+
 #mainContent {
   min-height: 100vh;
   flex: 1;
@@ -56,6 +57,17 @@ h1, h2 {
   scrollbar-width: thin;
   width: 80vw;
   transition: margin-left 0.3s ease;
+}
+
+#mainContent,
+#sidebar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+#mainContent::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .hero {
