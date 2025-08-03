@@ -517,3 +517,47 @@ body[data-theme="dark"] .toast {
     margin-left: 60px;
   }
 }
+.top-nav {
+  display: flex;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.top-nav a {
+  color:#ead5c0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.top-nav a:hover {
+  color: #a86c4b;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .top-nav a {
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
