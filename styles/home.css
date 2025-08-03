@@ -26,7 +26,7 @@ h1{
   to { opacity: 1; transform: translateY(0); }
 }
 .featured-dishes {
-  background: linear-gradient(to top, #B8B5AD, #4F3B2B); /* soft gradient blend */
+  background: radial-gradient(circle at top left, #B8B5AD, #4F3B2B); /* soft gradient blend */
   padding: 3rem 1.5rem;
   text-align: center;
 }
