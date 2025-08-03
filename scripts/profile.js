@@ -45,21 +45,13 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
   const file = fileInput?.files?.[0];
   if (!file) return console.error('No file selected');
 
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-  if (sessionError || !session) return console.error('Session error:', sessionError);
-
-  const authedClient = window.supabase.createClient(
-    'https://iabclikcfddqjcswhqwo.supabase.co',
-    session.access_token
-  );
-
-  const { data: { user }, error: userError } = await authedClient.auth.getUser();
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user) return console.error('User fetch error:', userError);
 
   const fileName = `user-${user.id}-${Date.now()}-${file.name}`;
 
   try {
-    const { error: uploadError } = await authedClient.storage
+    const { error: uploadError } = await supabase.storage
       .from('profile-photos')
       .upload(fileName, file, {
         upsert: true,
@@ -68,7 +60,7 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
 
     if (uploadError) throw uploadError;
 
-    const { data: publicData, error: urlError } = authedClient.storage
+    const { data: publicData, error: urlError } = supabase.storage
       .from('profile-photos')
       .getPublicUrl(fileName);
 
@@ -76,7 +68,7 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
 
     const publicUrl = publicData.publicUrl;
 
-    const { error: updateError } = await authedClient
+    const { error: updateError } = await supabase
       .from('profiles')
       .update({ avatar_url: publicUrl })
       .eq('id', user.id);
@@ -89,6 +81,7 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
     console.error('Upload failed:', err.message);
   }
 });
+
 
 // 🚪 Logout
 document.getElementById('logout-button')?.addEventListener('click', () => {
