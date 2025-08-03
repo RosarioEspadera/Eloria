@@ -110,3 +110,52 @@ body {
 .toast.warning { background: #f39c12; }
 .toast.info { background: #3498db; }
 
+.profile-fields {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  max-width: 400px;
+}
+
+.profile-fields label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-fields input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.profile-fields input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #0077cc;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
