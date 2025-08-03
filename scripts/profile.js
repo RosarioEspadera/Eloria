@@ -51,6 +51,7 @@ loadProfile();
 
 // 📸 Upload new photo
 document.getElementById('change-photo')?.addEventListener('click', async () => {
+  
   const fileInput = document.getElementById('photo-upload');
   const file = fileInput?.files?.[0];
 
@@ -69,9 +70,13 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
 
   try {
     // Upload to Supabase Storage
-    const { error: uploadError } = await supabase.storage
-      .from('profile-photos')
-      .upload(fileName, file, { upsert: true });
+   const { error: uploadError } = await supabase.storage
+  .from('profile-photos')
+  .upload(fileName, file, {
+    upsert: true,
+    contentType: file.type // ✅ Explicit MIME type
+  });
+
 
     if (uploadError) throw uploadError;
 
