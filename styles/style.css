@@ -73,7 +73,7 @@ h1, h2 {
 
 /* 🍲 Dish Card */
 .dish-card {
-  background: radial-gradient(circle at center, #B8B5AD, #7C6619); /* soft gradient blend */
+  background: radial-gradient(circle at center, #ffffff, #e9c235);
   color: var(--card-text, #222);
   border-radius: 16px;
   padding: 16px;
@@ -295,8 +295,7 @@ body[data-theme="dark"] {
 }
 
 /* Header */
-body[data-theme="dark"] h1,
-body[data-theme="dark"] h2 {
+body[data-theme="dark"] h1{
   color: #f5f0ec;
 }
 body[data-theme="dark"] .tag {
@@ -314,9 +313,13 @@ body[data-theme="dark"] .tag-button.clear {
 }
 
 
+body[data-theme="dark"] .tag {
+  background-color: #3a2e2a;
+  color: #e0d6cf;
+}
+
 /* Dish Cards */
 body[data-theme="dark"] .dish-card {
-  
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
@@ -325,12 +328,7 @@ body[data-theme="dark"] .dish-card:hover {
 }
 
 body[data-theme="dark"] .description {
-  color: #d8cfc7;
-}
-
-body[data-theme="dark"] .tag {
-  background-color: #3a2e2a;
-  color: #e0d6cf;
+  color: #140c05;
 }
 
 /* Buttons */
