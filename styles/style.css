@@ -552,3 +552,27 @@ body[data-theme="dark"] .toast {
     padding: 0.25rem 0.5rem;
   }
 }
+@media (max-width: 768px) {
+  #mainContent {
+    margin-left: 0;
+    padding: 1rem 0.5rem;
+    width: 100vw;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+
+  .sidebar > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+}
