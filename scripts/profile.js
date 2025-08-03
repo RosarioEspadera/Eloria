@@ -44,7 +44,7 @@ document.getElementById('name').textContent = profile.name || '—';
 document.getElementById('age').textContent = profile.age || '—';
 document.getElementById('address').textContent = profile.address || '—';
 document.getElementById('email').textContent = profile.email || '—';
-document.getElementById('profile-photo').src = profile.avatar_url || 'default-avatar.png';
+document.getElementById('profile-photo').src = profile.avatar_url || 'default.png';
 }
 
 loadProfile();
