@@ -13,7 +13,7 @@
   <h1>Your Profile</h1>
   <img id="profile-photo" src="default.png" alt="Profile Photo" />
   <input type="file" id="photo-upload" />
-  <button onclick="uploadPhoto()">Change Photo</button>
+  <button id="change-photo" onclick="uploadPhoto()">Change Photo</button>
 
   <div id="user-info">
     <p>Name: <span id="name"></span></p>
@@ -30,6 +30,7 @@
   <a class="tab-link" href="chat.html"><p>Chat</p></a>
 </nav>
   <script type="module" src="scripts/supabase.js"></script>
-  <script type="module" src="scripts/profile.js"></script>
+  <script type="module" src="scripts/profile.js" defer></script>
+
 </body>
 </html>
