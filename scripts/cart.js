@@ -34,16 +34,17 @@ function showToast(message) {
 }
 
 
-import dishes from '../data/dishes.json' assert { type: 'json' };
+let dishes = [];
+
+async function loadDishes() {
+  const res = await fetch('../data/dishes.json');
+  dishes = await res.json();
+  renderCart(); // call after dishes are loaded
+}
 
 function renderCart() {
   const cartPreview = document.getElementById('cartPreview');
-  if (!cartPreview) return;
-
-  if (cart.length === 0) {
-    cartPreview.innerHTML = '<p>Your cart is empty.</p>';
-    return;
-  }
+  if (!cartPreview || dishes.length === 0) return;
 
   const itemsHTML = cart.map((item, index) => {
     const dish = dishes.find(d => d.id === item.id);
@@ -76,6 +77,19 @@ function renderCart() {
   `;
 }
 
+window.updateQuantity = function(id, newQty) {
+  if (newQty < 1) return;
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.quantity = newQty;
+    renderCart();
+  }
+};
+showToast(`Updated ${item.name} to ${item.quantity}`);
+qtyText.classList.add('qty-flash');
+setTimeout(() => qtyText.classList.remove('qty-flash'), 300);
+
+
 // Optional: allow item removal
 window.removeFromCart = function(index) {
   cart.splice(index, 1);
@@ -86,3 +100,5 @@ window.removeFromCart = function(index) {
 export function getCart() {
   return cart;
 }
+
+loadDishes();
