@@ -4,27 +4,37 @@ const supabase = window.supabase.createClient(
 );
 
 // Load profile info
-(async () => {
- const { data: { user } } = await supabase.auth.getUser();
-console.log(user?.id); // should match your Supabase row
-  if (userError || !user) return console.error('User not found');
-
-const { data, error } = await supabase
-  .from('profiles')
-  .select('avatar_url, name, age, address')
-  .eq('id', user.id)
-  .maybeSingle(); // returns null if no match, avoids 406
-
-  if (error) return console.error('Profile fetch error:', error);
-
-  if (data?.avatar_url) {
-    document.getElementById('profile-photo').src = data.avatar_url;
+async function loadProfile() {
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    console.error('User fetch error:', authError);
+    return;
   }
 
-  document.getElementById('name').textContent = data?.name || '—';
-  document.getElementById('age').textContent = data?.age || '—';
-  document.getElementById('address').textContent = data?.address || '—';
-})();
+  const { data: profile, error: profileError } = await supabase
+    .from('profiles')
+    .select('avatar_url, name, age, address')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  if (profileError) {
+    console.error('Profile fetch error:', profileError);
+    return;
+  }
+
+  if (!profile) {
+    console.warn('No profile found for this user.');
+    return;
+  }
+
+  // Populate UI
+  document.getElementById('name').value = profile.name || '';
+  document.getElementById('age').value = profile.age || '';
+  document.getElementById('address').value = profile.address || '';
+  document.getElementById('avatar').src = profile.avatar_url || 'default-avatar.png';
+}
+
+loadProfile();
 
 // Upload new photo
 document.getElementById('change-photo')?.addEventListener('click', async () => {
