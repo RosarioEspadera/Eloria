@@ -43,17 +43,23 @@ async function loadProfile() {
       return loadProfile(); // reload after insert
     }
 
-    // 🖼️ Populate UI
+    // 🖼️ Populate static display
     document.getElementById('name').textContent = profile.name || '—';
     document.getElementById('age').textContent = profile.age || '—';
     document.getElementById('address').textContent = profile.address || '—';
     document.getElementById('email').textContent = profile.email || '—';
     document.getElementById('profile-photo').src = profile.avatar_url || 'default.png';
+
+    // 📝 Populate editable inputs
+    document.getElementById('name-input').value = profile.name || '';
+    document.getElementById('age-input').value = profile.age ?? '';
+    document.getElementById('address-input').value = profile.address || '';
   } catch (err) {
     console.error('Profile load error:', err.message);
     showToast('Failed to load profile', 'error');
   }
 }
+
 
 // 📸 Upload avatar
 async function uploadAvatar() {
@@ -134,10 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('change-photo')?.addEventListener('click', uploadAvatar);
   document.getElementById('logout-button')?.addEventListener('click', logout);
 });
-
-document.getElementById('name-input').value = profile.name || '';
-document.getElementById('age-input').value = profile.age ?? '';
-document.getElementById('address-input').value = profile.address || '';
 
 document.getElementById('save-profile')?.addEventListener('click', async () => {
   try {
