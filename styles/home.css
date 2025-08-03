@@ -17,6 +17,9 @@ body{
   font-weight: 700;
   margin: 0;
 }
+h1{
+  color:#ead5c0;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
@@ -138,7 +141,7 @@ body{
 }
 
 .top-nav a {
-  color: #7a6853;
+  color:#ead5c0;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
