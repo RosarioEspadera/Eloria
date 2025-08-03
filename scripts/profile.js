@@ -52,30 +52,41 @@ loadProfile();
 // 📸 Upload new photo
 document.getElementById('change-photo')?.addEventListener('click', async () => {
   const fileInput = document.getElementById('photo-upload');
-  const file = fileInput.files[0];
-  if (!file) return;
+  const file = fileInput?.files?.[0];
+
+  if (!file) {
+    console.error('No file selected');
+    return;
+  }
 
   const { data: { user }, error: authError } = await supabase.auth.getUser();
   if (authError || !user) {
-    console.error('User fetch error:', authError);
+    console.error('User fetch error:', authError?.message);
     return;
   }
 
   const fileName = `user-${user.id}-${Date.now()}-${file.name}`;
 
   try {
+    // Upload to Supabase Storage
     const { error: uploadError } = await supabase.storage
       .from('profile-photos')
       .upload(fileName, file, { upsert: true });
 
     if (uploadError) throw uploadError;
 
-    const { data: publicData } = supabase.storage
+    // Get public URL
+    const { data: publicData, error: urlError } = supabase.storage
       .from('profile-photos')
       .getPublicUrl(fileName);
 
+    if (urlError || !publicData?.publicUrl) {
+      throw new Error('Failed to get public URL');
+    }
+
     const publicUrl = publicData.publicUrl;
 
+    // Update profile row
     const { error: updateError } = await supabase
       .from('profiles')
       .update({ avatar_url: publicUrl })
@@ -83,7 +94,9 @@ document.getElementById('change-photo')?.addEventListener('click', async () => {
 
     if (updateError) throw updateError;
 
+    // Update UI
     document.getElementById('profile-photo').src = publicUrl;
+    console.log('Photo updated successfully!');
   } catch (err) {
     console.error('Upload failed:', err.message);
   }
