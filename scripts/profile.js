@@ -134,3 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('change-photo')?.addEventListener('click', uploadAvatar);
   document.getElementById('logout-button')?.addEventListener('click', logout);
 });
+
+document.getElementById('edit-profile-toggle')?.addEventListener('click', () => {
+  const info = document.getElementById('user-info');
+  const fields = document.querySelector('.profile-fields');
+  const isEditing = fields.style.display === 'block';
+
+  fields.style.display = isEditing ? 'none' : 'block';
+  info.style.display = isEditing ? 'block' : 'none';
+
+  document.getElementById('edit-profile-toggle').textContent = isEditing
+    ? 'Edit Profile Info'
+    : 'Cancel Edit';
+});
