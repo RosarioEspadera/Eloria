@@ -73,7 +73,7 @@ h1, h2 {
 
 /* 🍲 Dish Card */
 .dish-card {
-  background: linear-gradient(to top, #B8B5AD, #7C6619); /* soft gradient blend */
+  background: radial-gradient(circle at center, #B8B5AD, #7C6619); /* soft gradient blend */
   color: var(--card-text, #222);
   border-radius: 16px;
   padding: 16px;
