@@ -6,7 +6,7 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: linear-gradient(to bottom, #fdf8f4, #f7f2ee);
+    background: linear-gradient(to bottom, #a97253, #341b0d);
   border-bottom: 1px solid #e0d6cf;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   animation: fadeIn 0.6s ease-out;
@@ -138,6 +138,7 @@ body{
 }
 
 .top-nav a {
+  color: #7a6853;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
