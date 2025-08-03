@@ -135,15 +135,34 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logout-button')?.addEventListener('click', logout);
 });
 
-document.getElementById('edit-profile-toggle')?.addEventListener('click', () => {
-  const info = document.getElementById('user-info');
-  const fields = document.querySelector('.profile-fields');
-  const isEditing = fields.style.display === 'block';
+document.getElementById('name-input').value = profile.name || '';
+document.getElementById('age-input').value = profile.age ?? '';
+document.getElementById('address-input').value = profile.address || '';
 
-  fields.style.display = isEditing ? 'none' : 'block';
-  info.style.display = isEditing ? 'block' : 'none';
+document.getElementById('save-profile')?.addEventListener('click', async () => {
+  try {
+    const user = await getCurrentUser();
+    const name = document.getElementById('name-input').value.trim();
+    const age = parseInt(document.getElementById('age-input').value);
+    const address = document.getElementById('address-input').value.trim();
 
-  document.getElementById('edit-profile-toggle').textContent = isEditing
-    ? 'Edit Profile Info'
-    : 'Cancel Edit';
+    if (!name) return showToast('Name is required', 'warning');
+
+    const { error } = await supabase
+      .from('profiles')
+      .upsert({ id: user.id, name, age, address }, { onConflict: 'id' });
+
+    if (error) throw error;
+
+    showToast('Profile updated!', 'success');
+    loadProfile();
+
+    // Hide edit form after save
+    document.querySelector('.profile-fields').style.display = 'none';
+    document.getElementById('user-info').style.display = 'block';
+    document.getElementById('edit-profile-toggle').textContent = 'Edit Profile Info';
+  } catch (err) {
+    console.error('Profile update failed:', err.message);
+    showToast('Update failed', 'error');
+  }
 });
