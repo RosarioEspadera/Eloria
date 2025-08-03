@@ -77,6 +77,11 @@ function renderCart() {
   `;
 }
 
+function formatTotal(amount) {
+  return '₱' + amount.toFixed(2);
+}
+
+
 window.updateQuantity = function(id, newQty) {
   if (newQty < 1) return;
   const item = cart.find(i => i.id === id);
