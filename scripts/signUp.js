@@ -10,14 +10,32 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
   const errorMsg = document.getElementById("errorMsg");
 
-  const { data, error } = await supabase.auth.signUp(
-    { email, password },
-    { data: { name, age, address } }
-  );
+ const { data, error } = await supabase.auth.signUp({
+  email,
+  password
+});
 
-  if (error) {
-    errorMsg.textContent = error.message;
-  } else {
-    window.location.href = "login.html";
+if (error) {
+  errorMsg.textContent = error.message;
+  return;
+}
+
+// Insert into profiles table
+const userId = data.user?.id;
+if (userId) {
+  const { error: profileError } = await supabase.from('profiles').insert({
+    id: userId,
+    name,
+    age,
+    address,
+    email
+  });
+
+  if (profileError) {
+    errorMsg.textContent = profileError.message;
+    return;
   }
+
+  window.location.href = "login.html";
+}
 });
