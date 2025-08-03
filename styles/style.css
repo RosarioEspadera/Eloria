@@ -581,9 +581,42 @@ body[data-theme="dark"] .toast {
   }
 
   #cartPreview,
-  #orderForm {
+  #orderForm{
     width: 100%;
     margin-bottom: 1.5rem;
+  }
+    #orderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #fffaf7;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    font-size: 0.9rem;
+  }
+
+  #orderForm input,
+  #orderForm textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #d8cfc7;
+  }
+
+  #orderForm button {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    background: #7C6619;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  #orderForm button:hover {
+    background: #5f4638;
   }
 
   .hero h2 {
