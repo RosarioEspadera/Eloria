@@ -1,7 +1,22 @@
 body{
   background: #D7CDB3;
 }
-
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom, #fdf8f4, #f7f2ee);
+  border-bottom: 1px solid #e0d6cf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .featured-dishes {
   background: linear-gradient(to top, #B8B5AD, #4F3B2B); /* soft gradient blend */
   padding: 3rem 1.5rem;
