@@ -1,3 +1,7 @@
+body{
+  background: #D7CDB3;
+}
+
 .featured-dishes {
   background: linear-gradient(to top, #B8B5AD, #4F3B2B); /* soft gradient blend */
   padding: 3rem 1.5rem;
