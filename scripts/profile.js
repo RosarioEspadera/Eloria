@@ -11,11 +11,12 @@ async function loadProfile() {
     return;
   }
 
-  const { data: profile, error: profileError } = await supabase
-    .from('profiles')
-    .select('avatar_url, name, age, address')
-    .eq('id', user.id)
-    .maybeSingle();
+const { data: profile, error: profileError } = await supabase
+  .from('profiles')
+  .select('avatar_url, name, age, address, email')
+  .eq('id', user.id)
+  .maybeSingle();
+
 
   if (profileError) {
     console.error('Profile fetch error:', profileError);
@@ -39,10 +40,11 @@ async function loadProfile() {
   }
 
   // 🖼️ Populate UI
-  document.getElementById('name').value = profile.name || '';
-  document.getElementById('age').value = profile.age || '';
-  document.getElementById('address').value = profile.address || '';
-  document.getElementById('profile-photo').src = profile.avatar_url || 'default-avatar.png';
+document.getElementById('name').textContent = profile.name || '—';
+document.getElementById('age').textContent = profile.age || '—';
+document.getElementById('address').textContent = profile.address || '—';
+document.getElementById('email').textContent = profile.email || '—';
+document.getElementById('profile-photo').src = profile.avatar_url || 'default-avatar.png';
 }
 
 loadProfile();
