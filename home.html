@@ -10,7 +10,13 @@
 <body class="theme-light">
   <header class="site-header">
     <h1 class="logo">Eloria</h1>
-
+    
+<nav class="top-nav">
+  <a href="index.html">Menu</a>
+  <a href="social.html">Social</a>
+  <a href="profile.html">Profile</a>
+  <a href="chat.html">Chat</a>
+</nav>
   <section class="hero">
     <h2>Welcome to Eloria</h2>
     <p class="tagline">A poetic space for shared meals, modular menus, and expressive community.</p>
@@ -60,12 +66,14 @@
     grid.appendChild(card);
   });
 </script>
-<nav class="bottom-tab">
-  <a href="index.html">Menu</a>
-  <a href="social.html">Social</a>
-  <a href="profile.html">Profile</a>
-  <a href="chat.html">Chat</a>
-</nav>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".dish-card");
+    cards.forEach((card, i) => {
+      card.style.animationDelay = `${i * 0.2}s`;
+    });
+  });
+</script>
 
 </body>
 </html>
