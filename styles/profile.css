@@ -75,15 +75,20 @@ body {
 }
 
 .bottom-tab {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-around;
-  padding: 1rem;
-  background-color: #f7f2ee;
-  border-top: 1px solid #e0d6cf;
+  padding: 8px 0;
 }
 
 .tab-link {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #5f4638;
   text-decoration: none;
-  color: #5c3d2e;
-  font-weight: 500;
 }
