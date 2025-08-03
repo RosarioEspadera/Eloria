@@ -158,3 +158,21 @@ body{
     transform: translateY(0);
   }
 }
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .top-nav a {
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
