@@ -110,7 +110,3 @@ body {
 .toast.warning { background: #f39c12; }
 .toast.info { background: #3498db; }
 
-
-.profile-fields {
-  display: none;
-}
