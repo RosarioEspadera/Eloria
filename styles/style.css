@@ -553,26 +553,51 @@ body[data-theme="dark"] .toast {
   }
 }
 @media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
   #mainContent {
+    width: 100%;
     margin-left: 0;
-    padding: 1rem 0.5rem;
-    width: 100vw;
+    padding: 0.5rem;
+    overflow-y: visible;
   }
 
   .sidebar {
-    position: static;
     width: 100%;
     height: auto;
-    flex-direction: row;
-    gap: 1rem;
+    position: relative;
+    top: auto;
     padding: 1rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(to bottom right, #fdf8f4, #f0e6d8);
+    border: 1px solid #e0d6cf;
+    scroll-behavior: smooth;
   }
 
-  .sidebar > * {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
+  #cartPreview,
+  #orderForm {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .dish-card {
+    min-height: 240px;
+    font-size: 0.85rem;
+  }
+
+  #dishList {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
   }
 }
+
