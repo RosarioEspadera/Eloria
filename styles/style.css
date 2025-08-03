@@ -48,7 +48,6 @@ h1, h2 {
   overflow: hidden; /* Prevent double scrollbars */
 }
 #mainContent {
-  margin-left: 80px;
   min-height: 100vh;
   flex: 1;
   overflow-y: auto;
@@ -508,15 +507,7 @@ body[data-theme="dark"] .toast {
   color: #3a2e2a;
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
-@media (max-width: 768px) {
-  .bottom-tab {
-    width: 60px;
-  }
 
-  .mainContent {
-    margin-left: 60px;
-  }
-}
 .top-nav {
   display: flex;
   gap: 2rem;
