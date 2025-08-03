@@ -24,7 +24,11 @@ body {
   margin: 2rem auto;
   padding: 1rem;
   text-align: center;
+  background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/profilesecbg.png');
+  background-size: cover;
+  background-position: center;
 }
+
 
 .photo-container {
   margin-bottom: 1.5rem;
