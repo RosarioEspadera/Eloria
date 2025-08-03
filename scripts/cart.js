@@ -37,7 +37,7 @@ function showToast(message) {
 let dishes = [];
 
 async function loadDishes() {
-  const res = await fetch('../data/dishes.json');
+  const res = await fetch('./data/dishes.json');
   dishes = await res.json();
   renderCart(); // call after dishes are loaded
 }
