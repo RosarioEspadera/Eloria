@@ -34,36 +34,47 @@ function showToast(message) {
 }
 
 
+import dishes from '../data/dishes.json' assert { type: 'json' };
+
 function renderCart() {
-  const cartPreview = document.getElementById("cartPreview");
+  const cartPreview = document.getElementById('cartPreview');
   if (!cartPreview) return;
 
   if (cart.length === 0) {
-    cartPreview.innerHTML = "<p>Your cart is empty.</p>";
+    cartPreview.innerHTML = '<p>Your cart is empty.</p>';
     return;
   }
 
- const itemsHTML = cart.map((item, index) => `
-  <div class="cart-item">
-    <span>${item.quantity} × ${item.name} – ₱${(item.price * item.quantity).toFixed(2)}</span>
-    <button onclick="removeFromCart(${index})">✖</button>
-  </div>
-`).join("");
+  const itemsHTML = cart.map((item, index) => {
+    const dish = dishes.find(d => d.id === item.id);
+    if (!dish) return '';
 
-const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-const totalFormatted = formatTotal(total);
+    return `
+      <div class="cart-item">
+        <img src="${dish.image}" alt="${dish.name}" />
+        <div class="cart-item-details">
+          <div class="cart-item-name">${dish.name}</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">−</button>
+            <span>${item.quantity}</span>
+            <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+          </div>
+          <div class="cart-item-price">₱${(item.price * item.quantity).toFixed(2)}</div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">✖</button>
+        </div>
+      </div>
+    `;
+  }).join('');
 
-cartPreview.innerHTML = `
-  <h2>Cart Preview</h2>
-  ${itemsHTML}
-  <div class="cart-total">Total: ${totalFormatted}</div>
-`;
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalFormatted = formatTotal(total);
+
+  cartPreview.innerHTML = `
+    <h2>Cart Preview</h2>
+    ${itemsHTML}
+    <div class="cart-total">Total: ${totalFormatted}</div>
+  `;
 }
-
-function formatTotal(amount) {
-  return `₱${amount.toFixed(2)}`;
-}
-
 
 // Optional: allow item removal
 window.removeFromCart = function(index) {
