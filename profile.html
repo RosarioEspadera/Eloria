@@ -3,38 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Eloria | Profile</title>
   <link rel="stylesheet" href="styles/profile.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Profile logic -->
+  <script src="scripts/profile.js" defer></script>
 </head>
 <body>
-  <h1>Your Profile</h1>
-  <img id="profile-photo" src="default.png" alt="Profile Photo" />
-  <input type="file" id="photo-upload" />
-  <button id="change-photo" onclick="uploadPhoto()">Change Photo</button>
+  <header class="site-header">
+    <h1 class="logo">Eloria</h1>
+  </header>
 
-  <div id="user-info">
-    <p>Name: <span id="name"></span></p>
-    <p>Age: <span id="age"></span></p>
-    <p>Address: <span id="address"></span></p>
-  </div>
-  <button id="logout-button">Log Out</button>
+  <main class="profile-section">
+    <h2>Your Profile</h2>
+    <div class="photo-container">
+      <img id="profile-photo" src="assets/images/default.png" alt="Profile Photo" />
+      <input type="file" id="photo-upload" />
+      <button id="change-photo">Change Photo</button>
+    </div>
 
- <nav class="bottom-tab">
-  <a class="tab-link" href="home.html"><p>Home</p></a>
-  <a class="tab-link" href="index.html"><p>Menu</p></a>
-  <a class="tab-link" href="profile.html"><p>Profile</p></a>
-  <a class="tab-link" href="social.html"><p>Social</p></a>
-  <a class="tab-link" href="chat.html"><p>Chat</p></a>
-</nav>
- 
-  <!-- Load Supabase client globally -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <div id="user-info">
+      <p>Name: <span id="name"></span></p>
+      <p>Age: <span id="age"></span></p>
+      <p>Address: <span id="address"></span></p>
+    </div>
 
-<!-- Your profile logic -->
-<script src="scripts/profile.js" defer></script>
+    <button id="logout-button">Log Out</button>
+  </main>
 
-
+  <nav class="bottom-tab">
+    <a class="tab-link" href="home.html">Home</a>
+    <a class="tab-link" href="index.html">Menu</a>
+    <a class="tab-link" href="profile.html">Profile</a>
+    <a class="tab-link" href="social.html">Social</a>
+    <a class="tab-link" href="chat.html">Chat</a>
+  </nav>
 </body>
 </html>
+
