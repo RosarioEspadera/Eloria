@@ -1,5 +1,5 @@
 .featured-dishes {
-  background: #fdf8f3;
+  background: linear-gradient(to top, #fdf6f0, #4F3B2B); /* soft gradient blend */
   padding: 3rem 1.5rem;
   text-align: center;
 }
@@ -19,7 +19,7 @@
 }
 
 .dish-card {
-  background: #fff;
+  background: #7C6619;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.08);
   padding: 1.5rem;
