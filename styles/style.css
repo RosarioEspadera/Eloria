@@ -165,16 +165,20 @@ h1, h2 {
 
 /* 🍲 Dish Card */
 .dish-card {
+  position: relative;
   background: radial-gradient(circle at center, #ffffff, #e9c235);
   color: var(--card-text, #222);
   border-radius: 16px;
   padding: 16px;
-  margin: 12px 0;
+  margin: 40px 0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  overflow: hidden;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 360px;
+  min-width: 100px;
   height: auto;
+  align-items: center;
   text-align: center;
 }
 .dish-card.hidden {
@@ -187,12 +191,23 @@ h1, h2 {
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 .dish-card img {
-  width: 100%;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
   height: auto;
-  object-fit: contain;
+  z-index: 2;
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
 }
 .dish-info {
   padding: 1rem;
+   margin-top: 80px;
 }
 .dish-info h2 {
   font-size: 1.2rem;
@@ -232,7 +247,7 @@ h1, h2 {
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
-  width: 100%;
+  width: 90%;
 }
 
 .order-btn:hover {
