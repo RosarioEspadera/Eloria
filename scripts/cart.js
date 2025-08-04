@@ -21,7 +21,8 @@ export function addToCart(dish) {
     cart.push({ ...dish, quantity: 1 });
     showToast(`🛒 ${dish.name} added to cart.`);
   }
-
+  
+  saveCart();
   renderCart();
 }
 
@@ -33,6 +34,14 @@ function showToast(message) {
   setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
+function saveCart() {
+  localStorage.setItem('eloriaCart', JSON.stringify(cart));
+}
+
+function loadCart() {
+  const saved = localStorage.getItem('eloriaCart');
+  if (saved) cart = JSON.parse(saved);
+}
 
 let dishes = [];
 
@@ -45,6 +54,11 @@ async function loadDishes() {
 function renderCart() {
   const cartPreview = document.getElementById('cartPreview');
   if (!cartPreview || dishes.length === 0) return;
+   
+  if (cart.length === 0) {
+    cartPreview.innerHTML = `<p>Your cart is feeling poetic... but empty.</p>`;
+    return;
+  }
 
   const itemsHTML = cart.map((item, index) => {
     const dish = dishes.find(d => d.id === item.id);
@@ -102,4 +116,5 @@ export function getCart() {
   return cart;
 }
 
+loadCart();
 loadDishes();
