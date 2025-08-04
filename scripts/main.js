@@ -7,9 +7,13 @@ fetch("./data/dishes.json")
 
 window.toggleCart = function() {
   const sidebar = document.querySelector('.sidebar');
+  const mainContent = document.getElementById('mainContent');
+
   sidebar.classList.toggle('visible');
+  mainContent.classList.toggle('shifted');
 };
 
 window.closeCart = function() {
   document.querySelector('.sidebar').classList.remove('visible');
+  document.getElementById('mainContent').classList.remove('shifted');
 };
