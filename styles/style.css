@@ -8,14 +8,19 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  color: #3a2a1e;
+  color: #c0aa9a;
+}
+.top-nav{
+  color: #F5E9D4;
+}
+.hero-header{
+  background: rgb(0 0 0 / 43%);
 }
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: linear-gradient(to bottom, #b7f055, #f4b9a4);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   animation: fadeIn 0.6s ease-out;
 }
@@ -25,8 +30,8 @@ body {
   font-weight: 700;
   margin: 0;
 }
-h1{
-  color:#67492a;
+h1 {
+  color:#f2e4d7;
 }
 
 @keyframes fadeIn {
@@ -73,7 +78,6 @@ h1, h2 {
 }
 
 .hero {
-  background: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -84,7 +88,7 @@ h1, h2 {
 .hero h2 {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  color: #7C6619;
+  color: #F5E9D4;
   margin-bottom: 0.5rem;
 }
 .sidebar {
@@ -190,7 +194,7 @@ h1, h2 {
 /* 🍲 Dish Card */
 .dish-card {
   position: relative;
-  background: radial-gradient(circle at center, #ffffff, #e9c235);
+  background: radial-gradient(circle at center, #ffffff, #D2B48C);
   color: var(--card-text, #222);
   border-radius: 16px;
   padding: 16px;
@@ -265,7 +269,7 @@ h1, h2 {
 /* Buttons */
 .order-btn {
   padding: 10px;
-  background-color: #5f4638;
+  background-color: #5C3A21;
   color: white;
   border: none;
   border-radius: 8px;
@@ -443,29 +447,11 @@ footer {
   color: #999;
 }
 
-/* Bottom Navigation */
-.bottom-tab {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 80px;
-  background: #fff;
-  border-right: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 1rem 0;
-  z-index: 1000;
-}
-
-
 .tab-link {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-size: 0.75rem;
-  color: #5f4638;
+  color: #F5E9D4;
   text-decoration: none;
   margin: 0.5rem 0;
 }
