@@ -81,7 +81,6 @@ h1, h2 {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
-  background-color: #F5E9D4;
   padding: 2rem;
   font-family: 'Georgia', serif;
   width: 100%;
