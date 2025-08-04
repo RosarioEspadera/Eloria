@@ -22,7 +22,6 @@ export function addToCart(dish) {
     showToast(`🛒 ${dish.name} added to cart.`);
   }
   
-  saveCart();
   renderCart();
 }
 
@@ -34,14 +33,6 @@ function showToast(message) {
   setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
-function saveCart() {
-  localStorage.setItem('eloriaCart', JSON.stringify(cart));
-}
-
-function loadCart() {
-  const saved = localStorage.getItem('eloriaCart');
-  if (saved) cart = JSON.parse(saved);
-}
 
 let dishes = [];
 
@@ -111,17 +102,10 @@ window.removeFromCart = function(index) {
   renderCart();
 };
 
-window.toggleCart = function() {
-  const cartPreview = document.getElementById('cartPreview');
-  if (cartPreview) {
-    cartPreview.classList.toggle('visible');
-  }
-};
 
 // Optional: expose cart for email.js or orderForm
 export function getCart() {
   return cart;
 }
 
-loadCart();
 loadDishes();
