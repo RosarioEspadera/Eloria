@@ -111,6 +111,13 @@ window.removeFromCart = function(index) {
   renderCart();
 };
 
+window.toggleCart = function() {
+  const cartPreview = document.getElementById('cartPreview');
+  if (cartPreview) {
+    cartPreview.classList.toggle('visible');
+  }
+};
+
 // Optional: expose cart for email.js or orderForm
 export function getCart() {
   return cart;
