@@ -79,9 +79,9 @@ h1, h2 {
 
 .hero {
   background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/Heroq.png');
+  background-repeat: no-repeat;
   background: cover;
   background-position: center;
-  background-repeat: no-repeat;
   width: 100%;
   height: 40vh;
   padding: 2rem;
