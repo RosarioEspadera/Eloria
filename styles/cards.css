@@ -64,7 +64,13 @@
 .order-btn:hover {
   background: var(--accent-hover);
 }
-
+#tagFilters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
 .tag-button {
   background: #e0d6cf;
   border: none;
@@ -72,6 +78,9 @@
   border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
+  gap: 1.5rem;
+  margin: 10px; 
+  align-content: center;
 }
 
 .tag-button:hover {
