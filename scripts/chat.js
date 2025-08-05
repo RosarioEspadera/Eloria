@@ -69,14 +69,13 @@ async function loadMessages() {
   const me = sessionUser.id;
 
   const { data, error } = await supabase
-  .from('messages')
-  .select(`
-    *,
-    sender:profiles!messages_user_id_fkey(id,email)
-  `)
-  .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
-  .order('created_at', { ascending: true });
-
+    .from('messages')
+    .select(`
+      *,
+      sender:profiles!messages_sender_id_fkey(id,email)
+    `)
+    .or(`and(sender_id.eq.${me},to_user_id.neq.${me}),and(sender_id.neq.${me},to_user_id.eq.${me})`)
+    .order('created_at', { ascending: true });
 
   if (error) return console.error('Load error:', error);
 
@@ -141,7 +140,7 @@ async function sendMessage(e) {
 
 function appendMessage(msg) {
   const me = sessionUser.id;
-  const isMine = msg.user_id === me;
+  const isMine = msg.sender_id === me;
 
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
@@ -154,6 +153,7 @@ function appendMessage(msg) {
   const list = document.getElementById('message-list');
   if (list) list.appendChild(el);
 }
+
 
 function scrollToBottom() {
   const list = document.getElementById('message-list');
