@@ -5,13 +5,16 @@ fetch("./data/dishes.json")
   .then(dishes => renderDishes(dishes))
   .catch(err => console.error("Error loading dishes:", err));
 
-window.toggleCart = function() {
+document.addEventListener('DOMContentLoaded', () => {
+  const viewCartButton = document.querySelector('.view-cart-btn');
   const sidebar = document.querySelector('.sidebar');
-  const mainContent = document.getElementById('mainContent');
 
-  const isOpen = sidebar.classList.toggle('open');
-  mainContent.classList.toggle('shifted', isOpen);
-};
+  if (viewCartButton && sidebar) {
+    viewCartButton.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+  }
+});
 
-document.querySelector('.view-cart-button').addEventListener('click', window.toggleCart);
+
 
