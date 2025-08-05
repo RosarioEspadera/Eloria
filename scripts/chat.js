@@ -129,10 +129,11 @@ async function sendMessage(e) {
   if (!content) return;
 
   const { error } = await supabase.from('messages').insert({
-    content,
-    user_id: sessionUser.id,
-    to_user_id: ADMIN_ID
-  });
+  content,
+  sender_id: sessionUser.id,
+  to_user_id: ADMIN_ID
+});
+
 
   if (error) console.error('Send error:', error);
   else input.value = '';
