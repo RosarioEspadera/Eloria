@@ -584,7 +584,7 @@ body[data-theme="dark"] .toast {
   }
 }
 
-@media (max-width: 1080px) {
+@media (width: 100vw) {
   body {
     background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebackground.png');
     background-size: cover;
@@ -630,8 +630,6 @@ body[data-theme="dark"] .toast {
   }
 
   .sidebar {
-    width: 40vw;
-    height: auto;
     position: relative;
     top: auto;
     padding: 1rem;
