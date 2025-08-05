@@ -68,11 +68,11 @@ async function ensureProfileExists(userId, metadata) {
 async function loadMessages() {
   const me = sessionUser.id;
 
-  const { data, error } = await supabase
-   .from('messages')
-   .select(`*, sender:profiles!messages_user_id_fkey(id,email)`)
-    .eq('room_id', 'global-chat')
-    .order('created_at', { ascending: true });
+ const { data, error } = await supabase
+  .from('messages')
+  .select(`*, sender:profiles!messages_sender_id_fkey(id,email)`)
+  .eq('room_id', 'global-chat')
+  .order('created_at', { ascending: true });
 
   if (error) return console.error('Load error:', error);
 
@@ -115,9 +115,10 @@ async function sendMessage(e) {
 
   const { error } = await supabase.from('messages').insert({
   content,
-  user_id: sessionUser.id,
-  room_id: 'global-chat'  
+  sender_id: sessionUser.id,
+  room_id: 'global-chat'
 });
+
 
 
 
