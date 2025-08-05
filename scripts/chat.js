@@ -124,6 +124,7 @@ async function sendMessage(e) {
 
 
 
+
   if (error) console.error('Send error:', error);
   else input.value = '';
 }
