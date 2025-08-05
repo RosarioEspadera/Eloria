@@ -6,7 +6,7 @@
 }
 
 .dish-card {
-  background: radial-gradient(circle at center, #f3cc88, #b67324);
+  background: radial-gradient(circle at center, #f3cc88, #f0a92e);
   border-radius: 1rem;
   padding: 1.25rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -17,6 +17,10 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+.dish-card h2 {
+  color: #452806;
 }
 
 .dish-card img {
