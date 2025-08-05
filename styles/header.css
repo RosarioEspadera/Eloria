@@ -24,7 +24,6 @@ h1, h2 {
 .hero {
   padding: 2rem;
   font-family: 'Georgia', serif;
-  width: 100%;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
