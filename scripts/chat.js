@@ -59,9 +59,7 @@ async function ensureProfileExists(userId, metadata) {
     id: userId,
     email: metadata?.email || '',
     name: metadata?.full_name || metadata?.name || 'Anonymous',
-    avatar_url: metadata?.avatar_url || 
-  `https://iabclikcfddqjcswhqwo.supabase.co/storage/v1/object/public/profile-photos/user-${userId}.png`
-  }]);
+   avatar_url: metadata?.avatar_url || `https://robohash.org/${userId}`}]);
     console.log('✅ Created new profile for', userId);
   }
 }
@@ -69,10 +67,11 @@ async function ensureProfileExists(userId, metadata) {
 
 async function loadMessages() {
   const { data, error } = await supabase
-    .from('messages')
-    .select(`*, sender:profiles!messages_sender_id_fkey(id,name,avatar_url)`)
-    .eq('room_id', 'global-chat')
-    .order('created_at', { ascending: true });
+  .from('messages')
+  .select(`*, sender:profiles!messages_sender_id_fkey(id,name,avatar_url)`)
+  .eq('room_id', 'global-chat')
+  .order('created_at', { ascending: true });
+
 
   if (error) return console.error('Load error:', error);
 
@@ -92,18 +91,23 @@ function subscribeToMessages() {
   chatChannel = supabase
     .channel('chat-global')
     .on('postgres_changes', {
-      event: 'INSERT',
-      schema: 'public',
-      table: 'messages',
-      filter: `room_id=eq.global-chat`
-    }, ({ new: msg }) => {
-      appendMessage({
-        ...msg,
-        senderName: msg.sender?.name || 'Unknown',
-        senderAvatar: msg.sender?.avatar_url || `https://robohash.org/${msg.sender_id}`
-      });
-      scrollToBottom();
-    })
+  event: 'INSERT',
+  schema: 'public',
+  table: 'messages',
+  filter: `room_id=eq.global-chat`
+}, async ({ new: msg }) => {
+  const { data: senderProfile } = await supabase
+    .from('profiles')
+    .select('name, avatar_url')
+    .eq('id', msg.sender_id)
+    .maybeSingle();
+  appendMessage({
+    ...msg,
+    senderName: senderProfile?.name || 'Unknown',
+    senderAvatar: senderProfile?.avatar_url || `https://robohash.org/${msg.sender_id}`
+  });
+  scrollToBottom();
+})
     .subscribe(({ error }) => {
       if (error) console.error('Subscription error:', error);
     });
@@ -134,7 +138,8 @@ function appendMessage(msg) {
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
   el.innerHTML = `
-    ${!isMine ? `<img src="${sanitize(msg.senderAvatar)}" class="avatar" alt="avatar"/>` : ''}
+    ${!isMine ? `<img src="${sanitize(msg.senderAvatar)}" class="avatar" alt="avatar"
+     onerror="this.src='default.png';" />` : ''}
     <div>
       <strong>${isMine ? 'You' : sanitize(msg.senderName || 'Unknown')}</strong><br/>
       ${sanitize(msg.content)}
