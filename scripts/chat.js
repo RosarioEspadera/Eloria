@@ -53,13 +53,14 @@ async function ensureProfileExists(userId, metadata) {
     .eq('id', userId);
 
   if (!data || data.length === 0) {
-    await supabase
-      .from('profiles')
-      .upsert([{
-        id: userId,
-        email: metadata?.email || '',
-        avatar_url: metadata?.avatar_url || `https://robohash.org/${userId}`
-      }]);
+   await supabase
+  .from('profiles')
+  .upsert([{
+    id: userId,
+    email: metadata?.email || '',
+    name: metadata?.full_name || metadata?.name || 'Anonymous',
+    avatar_url: metadata?.avatar_url || `https://robohash.org/${userId}`
+  }]);
     console.log('✅ Created new profile for', userId);
   }
 }
@@ -70,7 +71,7 @@ async function loadMessages() {
 
  const { data, error } = await supabase
   .from('messages')
-  .select(`*, sender:profiles!messages_sender_id_fkey(id,email)`)
+  .select(`*, sender:profiles!messages_sender_id_fkey(id,name)`)
   .eq('room_id', 'global-chat')
   .order('created_at', { ascending: true });
 
@@ -82,7 +83,7 @@ async function loadMessages() {
   list.innerHTML = '';
   data.forEach(msg => appendMessage({
     ...msg,
-    senderEmail: msg.sender?.email
+    senderName: msg.sender?.name
   }));
 
   scrollToBottom();
@@ -135,7 +136,7 @@ function appendMessage(msg) {
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
   el.innerHTML = `
-    <strong>${isMine ? 'You' : sanitize(msg.senderEmail || 'Unknown sender')}</strong><br/>
+    <strong>${isMine ? 'You' : sanitize(msg.senderName || 'Unknown sender')}</strong><br/>
     ${sanitize(msg.content)}
     <small>${new Date(msg.created_at).toLocaleTimeString()}</small>
   `;
