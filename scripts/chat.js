@@ -59,7 +59,8 @@ async function ensureProfileExists(userId, metadata) {
     id: userId,
     email: metadata?.email || '',
     name: metadata?.full_name || metadata?.name || 'Anonymous',
-    avatar_url: metadata?.avatar_url || `https://robohash.org/${userId}`
+    avatar_url: metadata?.avatar_url || 
+  `https://iabclikcfddqjcswhqwo.supabase.co/storage/v1/object/public/profile-photos/${userId}.png`
   }]);
     console.log('✅ Created new profile for', userId);
   }
