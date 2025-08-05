@@ -36,7 +36,12 @@
     "name": "Caffe Macchiato",
     "description": "A bold dot of espresso in creamy silence—wakefulness with restraint.",
     "price": 80,
-    "tags": ["☕ Coffee", "🎉 Crowd Favorite"],
+    "tags": ["tags": [
+  {
+    "label": "Coffee",
+    "icon": "./icons/coffee.png"
+  }
+, "🎉 Crowd Favorite"],
     "image": "./assets/images/CaffeMacchiatio.png"
   },
   {
