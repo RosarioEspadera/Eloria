@@ -14,9 +14,7 @@ body {
 .top-nav{
   color: #F5E9D4;
 }
-.hero-header{
-  background: rgb(0 0 0 / 43%);
-}
+
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -606,7 +604,7 @@ body[data-theme="dark"] .toast {
 @media (max-width: 768px) {
   body {
     background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebackground.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     background-attachment: fixed;
