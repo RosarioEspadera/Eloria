@@ -26,7 +26,7 @@ h1{
   to { opacity: 1; transform: translateY(0); }
 }
 .featured-dishes {
-  background: radial-gradient(circle at center, #B8B5AD, #4F3B2B); /* soft gradient blend */
+  background: radial-gradient(circle at center, #B8B5AD, #4F3B2B); 
   padding: 3rem 1.5rem;
   text-align: center;
 }
@@ -46,7 +46,7 @@ h1{
 }
 
 .dish-card {
-  background: linear-gradient(to top, #B8B5AD, #7C6619); /* soft gradient blend */
+  background: linear-gradient(to top, #B8B5AD, #7C6619); 
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.08);
   padding: 1.5rem;
@@ -79,7 +79,7 @@ h1{
 }
 
 .hero {
-  background-image: url('../hero.png'); /* Adjust path if needed */
+  background-image: url('../hero.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -93,7 +93,7 @@ h1{
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* dark overlay */
+  background: rgba(0, 0, 0, 0.4); 
   z-index: 0;
 }
 
@@ -105,15 +105,15 @@ h1{
 .hero h2 {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  color: #fdf6f0; /* Soft ivory for contrast */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Gentle shadow for depth */
+  color: #fdf6f0; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); 
   margin-bottom: 1rem;
 }
 
 .hero .tagline {
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
-  color: #fce8d5; /* Warm peach tone */
+  color: #fce8d5; 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   margin-bottom: 2rem;
 }
