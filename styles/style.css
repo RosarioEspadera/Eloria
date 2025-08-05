@@ -10,7 +10,21 @@ body {
   min-height: 100vh;
   color: #c0aa9a;
 }
-.top-nav{
-  color: #F5E9D4;
+.top-nav a {
+  text-decoration: none;
+  color: #3d1102;
+  background: #ece6d7;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  gap: 1.5rem;
+  margin: 10px; 
+  align-content: center;
 }
 
+.top-nav a:hover {
+  background: #5f4638;
+  color: white;
+}
