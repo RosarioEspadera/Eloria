@@ -3,47 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <title>Eloria | Chat</title>
-  <link rel="stylesheet" href="chat.css" />
-  <script type="module" src="scripts/supabase.js"></script>
+  <link rel="stylesheet" href="styles/chat.css" />
 </head>
 <body>
   <h1>Group Chat</h1>
   <div id="chat-box"></div>
   <input type="text" id="message" placeholder="Type your message..." />
-  <button onclick="sendMessage()">Send</button>
+  <button id="send-btn">Send</button>
 
- <script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  const supabase = createClient('https://iabclikcfddqjcswhqwo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw');
+    const supabase = createClient('https://iabclikcfddqjcswhqwo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw');
 
-  async function sendMessage() {
-    const content = document.getElementById('message').value;
-    await supabase.from('messages').insert([{ content }]);
-    document.getElementById('message').value = '';
-  }
+    async function sendMessage() {
+      const content = document.getElementById('message').value;
+      if (!content.trim()) return;
+      await supabase.from('messages').insert([{ content }]);
+      document.getElementById('message').value = '';
+    }
 
-  document.querySelector('button').addEventListener('click', sendMessage);
+    document.getElementById('send-btn').addEventListener('click', sendMessage);
 
-  supabase
-    .channel('public:messages')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
-      const div = document.createElement('div');
-      div.textContent = payload.new.content;
-      document.getElementById('chat-box').appendChild(div);
-    })
-    .subscribe();
-</script>
+    supabase
+      .channel('public:messages')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
+        const div = document.createElement('div');
+        div.textContent = payload.new.content;
+        document.getElementById('chat-box').appendChild(div);
+      })
+      .subscribe();
+  </script>
+
   <nav class="bottom-tab">
-  <a class="tab-link" href="home.html"><p>Home</p></a>
-  <a class="tab-link" href="index.html"><p>Menu</p></a>
-  <a class="tab-link" href="profile.html"><p>Profile</p></a>
-  <a class="tab-link" href="social.html"><p>Social</p></a>
-  <a class="tab-link" href="chat.html"><p>Chat</p></a>
-</nav>
+    <a class="tab-link" href="home.html"><p>Home</p></a>
+    <a class="tab-link" href="index.html"><p>Menu</p></a>
+    <a class="tab-link" href="profile.html"><p>Profile</p></a>
+    <a class="tab-link" href="social.html"><p>Social</p></a>
+    <a class="tab-link" href="chat.html"><p>Chat</p></a>
+  </nav>
 </body>
 </html>
