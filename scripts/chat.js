@@ -67,84 +67,84 @@ async function ensureProfileExists(userId, metadata) {
 
 
 async function loadMessages() {
-  const me = sessionUser.id;
-
- const { data, error } = await supabase
-  .from('messages')
-  .select(`*, sender:profiles!messages_sender_id_fkey(id,name)`)
-  .eq('room_id', 'global-chat')
-  .order('created_at', { ascending: true });
+  const { data, error } = await supabase
+    .from('messages')
+    .select(`*, sender:profiles!messages_sender_id_fkey(id,name,avatar_url)`)
+    .eq('room_id', 'global-chat')
+    .order('created_at', { ascending: true });
 
   if (error) return console.error('Load error:', error);
 
   const list = document.getElementById('message-list');
   if (!list) return;
-
   list.innerHTML = '';
   data.forEach(msg => appendMessage({
     ...msg,
-    senderName: msg.sender?.name
+    senderName: msg.sender?.name,
+    senderAvatar: msg.sender?.avatar_url
   }));
-
   scrollToBottom();
 }
 
 
 function subscribeToMessages() {
-  const me = sessionUser.id;
-
-chatChannel = supabase
-  .channel('chat-global')
-  .on('postgres_changes', {
-    event: 'INSERT',
-    schema: 'public',
-    table: 'messages',
-    filter: `room_id=eq.global-chat`
-  }, ({ new: msg }) => {
-    appendMessage({ ...msg, senderEmail: msg.profiles?.email || 'Unknown sender' });
-    scrollToBottom();
-  })
-  .subscribe();
+  chatChannel = supabase
+    .channel('chat-global')
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages',
+      filter: `room_id=eq.global-chat`
+    }, ({ new: msg }) => {
+      appendMessage({
+        ...msg,
+        senderName: msg.sender?.name || 'Unknown',
+        senderAvatar: msg.sender?.avatar_url || `https://robohash.org/${msg.sender_id}`
+      });
+      scrollToBottom();
+    })
+    .subscribe(({ error }) => {
+      if (error) console.error('Subscription error:', error);
+    });
 }
+
 async function sendMessage(e) {
   e.preventDefault();
   const input = document.getElementById('message-input');
   if (!input) return;
-
   const content = input.value.trim();
   if (!content) return;
 
   const { error } = await supabase.from('messages').insert({
-  content,
-  sender_id: sessionUser.id,
-  room_id: 'global-chat'
-});
-
-
-
-
-
+    content,
+    sender_id: sessionUser.id,
+    room_id: 'global-chat'
+  });
 
   if (error) console.error('Send error:', error);
   else input.value = '';
 }
 
+
 function appendMessage(msg) {
   const me = sessionUser.id;
-  const isMine = msg.user_id === sessionUser.id;
-
+  const isMine = msg.sender_id === me;
 
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
   el.innerHTML = `
-    <strong>${isMine ? 'You' : sanitize(msg.senderName || 'Unknown sender')}</strong><br/>
-    ${sanitize(msg.content)}
-    <small>${new Date(msg.created_at).toLocaleTimeString()}</small>
+    ${!isMine ? `<img src="${sanitize(msg.senderAvatar)}" class="avatar" alt="avatar"/>` : ''}
+    <div>
+      <strong>${isMine ? 'You' : sanitize(msg.senderName || 'Unknown')}</strong><br/>
+      ${sanitize(msg.content)}
+      <small>${new Date(msg.created_at).toLocaleTimeString()}</small>
+    </div>
   `;
 
   const list = document.getElementById('message-list');
   if (list) list.appendChild(el);
 }
+
 
 
 function scrollToBottom() {
