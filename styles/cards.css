@@ -1,72 +1,56 @@
 #dishList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
 }
 
 .dish-card {
-  background: radial-gradient(circle at center, #f3cc88, #f0a92e);
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.dish-card h2 {
-  color: #452806;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: #c0aa9a;
 }
 
 .dish-card img {
   width: 120px;
   height: 120px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.dish-info{
+.dish-info {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 0.95rem;
-  color: #5a4a4a;
-  margin-bottom: 1rem;
 }
 
-.dish-card, .dish-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #3e2f2f;
+.dish-name {
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
-.dish-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+.dish-description {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
 }
 
 .order-btn {
-  background: #a94708;
-  color: white;
+  align-self: start;
+  background-color: #c0aa9a;
+  color: #1a1a1a;
+  border: none;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
-.order-btn:hover {
-  background: var(--accent-hover);
-}
 #tagFilters {
   display: flex;
   flex-wrap: wrap;
