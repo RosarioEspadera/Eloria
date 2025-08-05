@@ -104,7 +104,7 @@ chatChannel = supabase
     scrollToBottom();
   })
   .subscribe();
-
+}
 async function sendMessage(e) {
   e.preventDefault();
   const input = document.getElementById('message-input');
