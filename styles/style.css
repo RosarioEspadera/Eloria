@@ -62,7 +62,7 @@ h1, h2 {
   transition: margin-left 0.3s ease;
 }
 #mainContent.shifted {
-  margin-right: 360px; /* Match sidebar width */
+  margin-right: 320px; /* Match sidebar width */
 }
 
 #mainContent,
@@ -102,7 +102,6 @@ h1, h2 {
   position: fixed;
   top: 0;
   right: 0;
-  width: 360px;
   height: 100vh;
   align-self: flex-start;
   scroll-behavior: smooth;
