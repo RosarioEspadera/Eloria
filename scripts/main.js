@@ -13,7 +13,6 @@ window.toggleCart = function() {
   mainContent.classList.toggle('shifted');
 };
 
-window.closeCart = function() {
-  document.querySelector('.sidebar').classList.remove('visible');
-  document.getElementById('mainContent').classList.remove('shifted');
-};
+document.querySelector('.view-cart-button').addEventListener('click', () => {
+  document.querySelector('.sidebar').classList.toggle('open');
+});
