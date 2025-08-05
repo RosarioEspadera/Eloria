@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+document.querySelector('#mainContent').classList.toggle('shifted');
 
 
 
