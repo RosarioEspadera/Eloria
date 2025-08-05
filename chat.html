@@ -9,10 +9,16 @@
 <script type="module" src="scripts/chat.js"></script>
 </head>
 <body>
-  <h1>Group Chat</h1>
-  <div id="chat-box"></div>
-  <input type="text" id="message" placeholder="Type your message..." />
-  <button id="send-btn">Send</button>
+ <div id="message-list"></div>
+
+  <form id="message-form">
+    <input
+      id="message-input"
+      placeholder="Type a message…"
+      autocomplete="off"
+    />
+    <button type="submit">Send</button>
+  </form>
 
   <nav class="bottom-tab">
     <a class="tab-link" href="home.html"><p>Home</p></a>
