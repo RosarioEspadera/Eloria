@@ -726,15 +726,25 @@ body[data-theme="dark"] .toast {
 
   .order-btn {
     padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 8px;
+    font-size: 0.5rem;
+    border-radius: 2px;
   }
     
   #dishList {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 0 1rem;
   }
+  .tag {
+  display: inline-block;
+  background: #e0d6cf;
+  color: #3a2e2a;
+  padding: 2px 5px;
+  border-radius: 25px;
+  font-size: 0.5rem;
+  margin: 2px;
+}
+
 }
 
