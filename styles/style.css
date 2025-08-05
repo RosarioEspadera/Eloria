@@ -99,6 +99,7 @@ h1, h2 {
 }
 .sidebar {
   overflow-y: auto;
+  overflow-x: auto;
   position: fixed;
   top: 0;
   right: 0;
