@@ -1,8 +1,11 @@
  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    const supabase = createClient('https://iabclikcfddqjcswhqwo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw');
+const supabaseUrl = "https://iabclikcfddqjcswhqwo.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw";
 const ADMIN_ID = '6d8cbbe7-47b5-4398-97f9-d91823b44110';
-  let sessionUser;
+let supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let sessionUser;
 let chatChannel;
 
 window.addEventListener('DOMContentLoaded', init);
@@ -14,7 +17,7 @@ async function init() {
   const { data: { session }, error } = await supabase.auth.getSession();
 
   if (error || !session?.user) {
-    window.location.replace('auth.html');
+    window.location.replace('login.html');
     return;
   }
 
