@@ -583,7 +583,7 @@ body[data-theme="dark"] .toast {
     transform: translateY(0);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
@@ -601,7 +601,7 @@ body[data-theme="dark"] .toast {
     padding: 0.25rem 0.5rem;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   body {
     background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebackground.png');
     background-size: cover;
@@ -616,10 +616,6 @@ body[data-theme="dark"] .toast {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  .hero-header{
-  background: rgb(0 0 0 / 43%);
-}
   
   .layout {
     flex-direction: column;
