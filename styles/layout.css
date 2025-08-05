@@ -1,0 +1,29 @@
+.layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#mainContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  background: var(--bg-gradient, linear-gradient(to bottom, #fdf6f0, #f2e4d7));
+  transition: margin-left 0.3s ease;
+}
+
+#mainContent.shifted {
+  margin-right: 320px;
+}
+
+#mainContent, #sidebar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#mainContent::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar {
+  display: none;
+}
