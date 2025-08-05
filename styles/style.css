@@ -583,24 +583,7 @@ body[data-theme="dark"] .toast {
     transform: translateY(0);
   }
 }
-@media (max-width: 1080px) {
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    gap: 1rem;
-  }
 
-  .top-nav {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .top-nav a {
-    font-size: 0.95rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
 @media (max-width: 1080px) {
   body {
     background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebackground.png');
@@ -617,6 +600,22 @@ body[data-theme="dark"] .toast {
     -moz-osx-font-smoothing: grayscale;
   }
   
+   .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .top-nav a {
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+  }
   .layout {
     flex-direction: column;
     height: auto;
@@ -625,14 +624,12 @@ body[data-theme="dark"] .toast {
   }
 
   #mainContent {
-    width: 100%;
     margin-left: 0;
     padding: 0.5rem;
     overflow-y: visible;
   }
 
   .sidebar {
-    width: 100%;
     height: auto;
     position: relative;
     top: auto;
@@ -646,7 +643,6 @@ body[data-theme="dark"] .toast {
 
   #cartPreview,
   #orderForm{
-    width: 100%;
     margin-bottom: 1.5rem;
   }
     #orderForm {
@@ -741,6 +737,5 @@ body[data-theme="dark"] .toast {
   font-size: 0.5rem;
   margin: 2px;
 }
-
 }
 
