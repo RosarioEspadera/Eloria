@@ -17,6 +17,11 @@
   <button onclick="sendMessage()">Send</button>
 
   <script>
+     import { sendMessage, subscribeToMessages } from './scripts/supabase.js';
+
+    document.querySelector('button').addEventListener('click', sendMessage);
+    subscribeToMessages();
+    
     async function sendMessage() {
       const content = document.getElementById('message').value;
       await supabase.from('messages').insert([{ content }]);
