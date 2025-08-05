@@ -22,6 +22,20 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
+.add-to-order {
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-to-order:hover {
+  background: var(--accent-hover);
+}
+
 .tag-button {
   background: #e0d6cf;
   border: none;
