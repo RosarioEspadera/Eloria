@@ -694,7 +694,8 @@ body[data-theme="dark"] .toast {
   }
 
   .dish-card {
-    min-height: 60px;
+    width: 40vw;
+    height: auto;
     font-size: 0.85rem;
     position: relative;
     padding: 1rem;
