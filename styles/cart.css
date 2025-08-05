@@ -121,14 +121,21 @@
 }
 
 #orderForm button {
-  background: #7C6619;
-  color: white;
+  background-color: #F77F00;
+  color: #ffffff;
   border: none;
   padding: 0.75rem;
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
+  margin-bottom: 100px;
 }
+
+#orderForm button:hover{
+  background-color:#faa580;
+  color: #293330;
+}
+
 .sidebar {
   position: fixed;
   right: 0;
