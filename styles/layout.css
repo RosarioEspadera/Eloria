@@ -16,9 +16,10 @@
 
 #mainContent.shifted {
   margin-right: 320px;
+  transition: margin 0.3s ease;
 }
 
-#mainContent, #sidebar {
+#mainContent, .sidebar {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
