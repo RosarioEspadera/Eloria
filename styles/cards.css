@@ -30,6 +30,7 @@
   flex-direction: column;
   justify-content: center;
   font-size: 0.8rem;
+  color: #ffff
 }
 
 .dish-card h2 {
