@@ -630,6 +630,7 @@ body[data-theme="dark"] .toast {
   }
 
   .sidebar {
+    width: 40vw;
     height: auto;
     position: relative;
     top: auto;
