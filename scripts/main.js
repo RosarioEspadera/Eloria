@@ -9,10 +9,9 @@ window.toggleCart = function() {
   const sidebar = document.querySelector('.sidebar');
   const mainContent = document.getElementById('mainContent');
 
-  sidebar.classList.toggle('visible');
-  mainContent.classList.toggle('shifted');
+  const isOpen = sidebar.classList.toggle('open');
+  mainContent.classList.toggle('shifted', isOpen);
 };
 
-document.querySelector('.view-cart-button').addEventListener('click', () => {
-  document.querySelector('.sidebar').classList.toggle('open');
-});
+document.querySelector('.view-cart-button').addEventListener('click', window.toggleCart);
+
