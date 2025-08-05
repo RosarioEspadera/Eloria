@@ -1,49 +1,163 @@
  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
     const supabase = createClient('https://iabclikcfddqjcswhqwo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw');
+const ADMIN_ID = '6d8cbbe7-47b5-4398-97f9-d91823b44110';
+  let sessionUser;
+let chatChannel;
 
-  async function loadMessages() {
-  const { data, error } = await supabase
-    .from('messages')
-    .select('content')
-    .order('id', { ascending: true });
+window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('beforeunload', () => {
+  if (chatChannel) supabase.removeChannel(chatChannel);
+});
 
-  if (error) {
-    console.error('Error loading messages:', error);
+async function init() {
+  const { data: { session }, error } = await supabase.auth.getSession();
+
+  if (error || !session?.user) {
+    window.location.replace('auth.html');
     return;
   }
 
-  const chatBox = document.getElementById('chat-box');
-  chatBox.innerHTML = ''; // Clear existing content
+  sessionUser = session.user;
 
-  data.forEach(msg => {
-    const div = document.createElement('div');
-    div.textContent = msg.content;
-    chatBox.appendChild(div);
+  // Reinitialize Supabase with authenticated headers 🔐
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    global: {
+      headers: { Authorization: `Bearer ${session.access_token}` }
+    }
   });
 
-  // Scroll to bottom
-  chatBox.scrollTop = chatBox.scrollHeight;
+  try {
+    await Promise.all([
+      ensureProfileExists(sessionUser.id, sessionUser.user_metadata),
+      loadMessages()
+    ]);
+
+    subscribeToMessages();
+
+    const form = document.getElementById('message-form');
+    form?.addEventListener('submit', sendMessage);
+  } catch (err) {
+    console.error('🚨 Init failed:', err);
+    alert('Something went wrong while setting up chat.');
+  }
+}
+
+async function ensureProfileExists(userId, metadata) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('id', userId);
+
+  if (!data || data.length === 0) {
+    await supabase
+      .from('profiles')
+      .upsert([{
+        id: userId,
+        email: metadata?.email || '',
+        avatar_url: metadata?.avatar_url || `https://robohash.org/${userId}`
+      }]);
+    console.log('✅ Created new profile for', userId);
+  }
 }
 
 
-  async function sendMessage() {
-    const content = document.getElementById('message').value;
-    if (!content.trim()) return;
-    await supabase.from('messages').insert([{ content }]);
-    document.getElementById('message').value = '';
-  }
+async function loadMessages() {
+  const me = sessionUser.id;
 
-  document.getElementById('send-btn').addEventListener('click', sendMessage);
+  const { data, error } = await supabase
+    .from('messages')
+    .select(`
+      *,
+      sender:profiles!messages_user_id_fkey(id,email)
+    `)
+    .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
+    .order('created_at', { ascending: true });
 
-  supabase
-    .channel('public:messages')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
-      const div = document.createElement('div');
-      div.textContent = payload.new.content;
-      document.getElementById('chat-box').appendChild(div);
+  if (error) return console.error('Load error:', error);
+
+  const list = document.getElementById('message-list');
+  if (!list) return;
+
+  list.innerHTML = '';
+  data.forEach(msg => appendMessage({
+    ...msg,
+    senderEmail: msg.sender?.email
+  }));
+
+  scrollToBottom();
+}
+
+function subscribeToMessages() {
+  const me = sessionUser.id;
+
+  chatChannel = supabase
+    .channel(`chat-${me}-${ADMIN_ID}`)
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages',
+      filter: `or(user_id=eq.${me},to_user_id=eq.${me})`
+    }, ({ new: msg }) => {
+      const isRelevant =
+        (msg.user_id === me && msg.to_user_id === ADMIN_ID) ||
+        (msg.user_id === ADMIN_ID && msg.to_user_id === me);
+
+      if (isRelevant) {
+        appendMessage({
+          ...msg,
+          senderEmail: msg.profiles?.email || 'Unknown sender'
+        });
+        scrollToBottom();
+      }
     })
-    .subscribe();
+    .subscribe(({ error }) => {
+      if (error) console.error('Subscription error:', error);
+    });
+}
 
-  // Load existing messages on page load
- loadMessages();
+async function sendMessage(e) {
+  e.preventDefault();
+  const input = document.getElementById('message-input');
+  if (!input) return;
+
+  const content = input.value.trim();
+  if (!content) return;
+
+  const { error } = await supabase.from('messages').insert({
+    content,
+    user_id: sessionUser.id,
+    to_user_id: ADMIN_ID
+  });
+
+  if (error) console.error('Send error:', error);
+  else input.value = '';
+}
+
+function appendMessage(msg) {
+  const me = sessionUser.id;
+  const isMine = msg.user_id === me;
+
+  const el = document.createElement('div');
+  el.className = `message ${isMine ? 'you' : 'them'}`;
+  el.innerHTML = `
+    <strong>${isMine ? 'You' : sanitize(msg.senderEmail || 'Unknown sender')}</strong><br/>
+    ${sanitize(msg.content)}
+    <small>${new Date(msg.created_at).toLocaleTimeString()}</small>
+  `;
+
+  const list = document.getElementById('message-list');
+  if (list) list.appendChild(el);
+}
+
+function scrollToBottom() {
+  const list = document.getElementById('message-list');
+  if (list) list.scrollTop = list.scrollHeight;
+}
+
+function sanitize(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
