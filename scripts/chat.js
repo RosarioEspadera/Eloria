@@ -68,15 +68,14 @@ async function ensureProfileExists(userId, metadata) {
 async function loadMessages() {
   const me = sessionUser.id;
 
- const { data, error } = await supabase
-  .from('messages')
-  select(`
-  *,
-  sender:profiles!messages_user_id_fkey(id,email)
-`)
-  .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
-  .order('created_at', { ascending: true });
-
+  const { data, error } = await supabase
+    .from('messages')
+    .select(`
+      *,
+      sender:profiles!messages_user_id_fkey(id,email)
+    `)
+    .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
+    .order('created_at', { ascending: true });
 
   if (error) return console.error('Load error:', error);
 
@@ -91,6 +90,7 @@ async function loadMessages() {
 
   scrollToBottom();
 }
+
 
 function subscribeToMessages() {
   const me = sessionUser.id;
