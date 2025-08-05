@@ -60,7 +60,7 @@ async function ensureProfileExists(userId, metadata) {
     email: metadata?.email || '',
     name: metadata?.full_name || metadata?.name || 'Anonymous',
     avatar_url: metadata?.avatar_url || 
-  `https://iabclikcfddqjcswhqwo.supabase.co/storage/v1/object/public/profile-photos/${userId}.png`
+  `https://iabclikcfddqjcswhqwo.supabase.co/storage/v1/object/public/profile-photos/user-${userId}.png`
   }]);
     console.log('✅ Created new profile for', userId);
   }
