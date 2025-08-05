@@ -25,7 +25,7 @@
   // Scroll to bottom
   chatBox.scrollTop = chatBox.scrollHeight;
 }
- loadMessages();
+
 
   async function sendMessage() {
     const content = document.getElementById('message').value;
@@ -46,3 +46,4 @@
     .subscribe();
 
   // Load existing messages on page load
+ loadMessages();
