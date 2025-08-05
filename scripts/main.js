@@ -8,14 +8,15 @@ fetch("./data/dishes.json")
 document.addEventListener('DOMContentLoaded', () => {
   const viewCartButton = document.querySelector('.view-cart-btn');
   const sidebar = document.querySelector('.sidebar');
+  const mainContent = document.getElementById('mainContent');
 
-  if (viewCartButton && sidebar) {
+  if (viewCartButton && sidebar && mainContent) {
     viewCartButton.addEventListener('click', () => {
       sidebar.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
     });
   }
 });
-document.querySelector('#mainContent').classList.toggle('shifted');
 
 
 
