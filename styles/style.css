@@ -605,7 +605,7 @@ body[data-theme="dark"] .toast {
 }
 @media (max-width: 768px) {
   body {
-    background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebodyindex.jpg');
+    background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebackground.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top center;
@@ -618,6 +618,11 @@ body[data-theme="dark"] .toast {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .hero-header{
+  background: rgb(0 0 0 / 43%);
+}
+  
   .layout {
     flex-direction: column;
     height: auto;
@@ -689,7 +694,7 @@ body[data-theme="dark"] .toast {
   }
 
   .dish-card {
-    min-height: 200px;
+    min-height: 60px;
     font-size: 0.85rem;
     position: relative;
     padding: 1rem;
@@ -705,8 +710,8 @@ body[data-theme="dark"] .toast {
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     z-index: 2;
   }
   
