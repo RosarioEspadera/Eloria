@@ -69,11 +69,8 @@ async function loadMessages() {
   const me = sessionUser.id;
 
   const { data, error } = await supabase
-    .from('messages')
-    .select(`
-      *,
-      sender:profiles!messages_user_id_fkey(id,email)
-    `)
+   .from('messages')
+   .select(`*, sender:profiles!messages_user_id_fkey(id,email)`)
     .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
     .order('created_at', { ascending: true });
 
@@ -130,9 +127,10 @@ async function sendMessage(e) {
 
   const { error } = await supabase.from('messages').insert({
   content,
-  sender_id: sessionUser.id,
+  user_id: sessionUser.id,
   to_user_id: ADMIN_ID
 });
+
 
 
   if (error) console.error('Send error:', error);
@@ -141,7 +139,7 @@ async function sendMessage(e) {
 
 function appendMessage(msg) {
   const me = sessionUser.id;
-  const isMine = msg.sender_id === me;
+  const isMine = msg.user_id === me;  
 
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
