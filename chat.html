@@ -16,27 +16,28 @@
   <input type="text" id="message" placeholder="Type your message..." />
   <button onclick="sendMessage()">Send</button>
 
-  <script>
-     import { sendMessage, subscribeToMessages } from './scripts/supabase.js';
+ <script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    document.querySelector('button').addEventListener('click', sendMessage);
-    subscribeToMessages();
-    
-    async function sendMessage() {
-      const content = document.getElementById('message').value;
-      await supabase.from('messages').insert([{ content }]);
-      document.getElementById('message').value = '';
-    }
+  const supabase = createClient('https://iabclikcfddqjcswhqwo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw');
 
-    supabase
-      .channel('public:messages')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
-        const div = document.createElement('div');
-        div.textContent = payload.new.content;
-        document.getElementById('chat-box').appendChild(div);
-      })
-      .subscribe();
-  </script>
+  async function sendMessage() {
+    const content = document.getElementById('message').value;
+    await supabase.from('messages').insert([{ content }]);
+    document.getElementById('message').value = '';
+  }
+
+  document.querySelector('button').addEventListener('click', sendMessage);
+
+  supabase
+    .channel('public:messages')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, payload => {
+      const div = document.createElement('div');
+      div.textContent = payload.new.content;
+      document.getElementById('chat-box').appendChild(div);
+    })
+    .subscribe();
+</script>
   <nav class="bottom-tab">
   <a class="tab-link" href="home.html"><p>Home</p></a>
   <a class="tab-link" href="index.html"><p>Menu</p></a>
