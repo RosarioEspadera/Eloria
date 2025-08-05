@@ -1,4 +1,4 @@
- import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const SUPABASE_URL = "https://iabclikcfddqjcswhqwo.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhYmNsaWtjZmRkcWpjc3docXdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMjM4NjIsImV4cCI6MjA2OTY5OTg2Mn0.IpGizEYbKqQUb8muy335lYCeP-u7mrFLJLUQO9oHPkw";
@@ -71,7 +71,7 @@ async function loadMessages() {
   const { data, error } = await supabase
    .from('messages')
    .select(`*, sender:profiles!messages_user_id_fkey(id,email)`)
-    .or(`and(user_id.eq.${me},to_user_id.neq.${me}),and(user_id.neq.${me},to_user_id.eq.${me})`)
+    .eq('room_id', 'global-chat')
     .order('created_at', { ascending: true });
 
   if (error) return console.error('Load error:', error);
@@ -92,30 +92,18 @@ async function loadMessages() {
 function subscribeToMessages() {
   const me = sessionUser.id;
 
-  chatChannel = supabase
-    .channel(`chat-${me}-${ADMIN_ID}`)
-    .on('postgres_changes', {
-      event: 'INSERT',
-      schema: 'public',
-      table: 'messages',
-      filter: `or(user_id=eq.${me},to_user_id=eq.${me})`
-    }, ({ new: msg }) => {
-      const isRelevant =
-        (msg.user_id === me && msg.to_user_id === ADMIN_ID) ||
-        (msg.user_id === ADMIN_ID && msg.to_user_id === me);
-
-      if (isRelevant) {
-        appendMessage({
-          ...msg,
-          senderEmail: msg.profiles?.email || 'Unknown sender'
-        });
-        scrollToBottom();
-      }
-    })
-    .subscribe(({ error }) => {
-      if (error) console.error('Subscription error:', error);
-    });
-}
+chatChannel = supabase
+  .channel('chat-global')
+  .on('postgres_changes', {
+    event: 'INSERT',
+    schema: 'public',
+    table: 'messages',
+    filter: `room_id=eq.global-chat`
+  }, ({ new: msg }) => {
+    appendMessage({ ...msg, senderEmail: msg.profiles?.email || 'Unknown sender' });
+    scrollToBottom();
+  })
+  .subscribe();
 
 async function sendMessage(e) {
   e.preventDefault();
@@ -128,8 +116,9 @@ async function sendMessage(e) {
   const { error } = await supabase.from('messages').insert({
   content,
   user_id: sessionUser.id,
-  to_user_id: ADMIN_ID
+  room_id: 'global-chat'  
 });
+
 
 
 
@@ -139,7 +128,8 @@ async function sendMessage(e) {
 
 function appendMessage(msg) {
   const me = sessionUser.id;
-  const isMine = msg.user_id === me;  
+  const isMine = msg.user_id === sessionUser.id;
+
 
   const el = document.createElement('div');
   el.className = `message ${isMine ? 'you' : 'them'}`;
