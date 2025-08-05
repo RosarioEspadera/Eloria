@@ -603,6 +603,16 @@ body[data-theme="dark"] .toast {
   }
 }
 @media (max-width: 768px) {
+  body {
+    background-image: url('https://raw.githubusercontent.com/RosarioEspadera/Eloria/main/mobilebodyindex.jpg');
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    line-height: 1.7;
+    color: #3a2f1f;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   .layout {
     flex-direction: column;
     height: auto;
@@ -674,13 +684,48 @@ body[data-theme="dark"] .toast {
   }
 
   .dish-card {
-    min-height: 240px;
+    min-height: 120px;
     font-size: 0.85rem;
+    position: relative;
+    padding: 1rem;
+    border-radius: 12px;
+    overflow: visible;
+    background: #fffaf7;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .dish-card img {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+  }
+  
+  .dish-info {
+    margin-top: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .dish-info h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
   }
 
+  .order-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+    
   #dishList {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 0 1rem;
   }
 }
 
