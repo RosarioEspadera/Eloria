@@ -96,18 +96,21 @@ function subscribeToMessages() {
   table: 'messages',
   filter: `room_id=eq.global-chat`
 }, async ({ new: msg }) => {
-  const { data: senderProfile } = await supabase
+  const { data: profile } = await supabase
     .from('profiles')
     .select('name, avatar_url')
     .eq('id', msg.sender_id)
     .maybeSingle();
+
   appendMessage({
     ...msg,
-    senderName: senderProfile?.name || 'Unknown',
-    senderAvatar: senderProfile?.avatar_url || `https://robohash.org/${msg.sender_id}`
+    senderName: profile?.name || 'Unknown',
+    senderAvatar: profile?.avatar_url || `https://robohash.org/${msg.sender_id}`
   });
+
   scrollToBottom();
 })
+
     .subscribe(({ error }) => {
       if (error) console.error('Subscription error:', error);
     });
