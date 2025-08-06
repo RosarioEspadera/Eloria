@@ -1,18 +1,7 @@
-.hero-header {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: linear-gradient(to bottom right, #fef9f6, #fff);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid #e8ded7;
-}
-
 .site-header {
   display: flex;
   justify-content: center;
-  background: rgb(13 5 5 / 72%);
+  background: rgb(110 74 74 / 40%);
   padding: 1rem;
   z-index: 2;
 }
@@ -35,75 +24,4 @@
 
 .top-nav a:hover {
   background: rgba(239, 221, 207, 0.4);
-}
-
-.hero-image {
-  width: 100%;
-  max-height: 480px;
-  object-fit: cover;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.hero {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 640px;
-  text-align: center;
-  z-index: 3;
-}
-
-.hero-overlay {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 2rem;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-}
-
-.hero-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: #3b2618;
-  margin-bottom: 1rem;
-}
-
-.hero-subheading {
-  font-size: 1rem;
-  color: #6b4d36;
-  margin-bottom: 1rem;
-}
-
-.hero-button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background: #53321e;
-  color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: background 0.3s ease;
-}
-
-.hero-button:hover {
-  background: #794b31;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .hero-heading {
-    font-size: 2rem;
-  }
-  .hero-subheading {
-    font-size: 1rem;
-  }
-  .hero {
-    top: 70%;
-    transform: translate(-50%, -50%);
-  }
 }
